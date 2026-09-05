@@ -1,21 +1,30 @@
 import { RoleData, PlatformModule, RegionalWorkflow, Testimonial, PricingPlan, FaqItem } from '../types';
 
+export const BUSINESS_TYPES = [
+  { id: 'salons', title: 'Hair & Beauty Salons', desc: 'Manage haircuts, coloring, queue tokens, and stylist commissions.' },
+  { id: 'parlours', title: 'Beauty Parlours', desc: 'Facials, threading, waxing, skin treatments, and package billing.' },
+  { id: 'spas', title: 'Spas & Wellness Centers', desc: 'Room booking, therapist schedules, aromatherapy, and memberships.' },
+  { id: 'makeup', title: 'Makeup Studios & Artists', desc: 'Bridal bookings, trial sessions, advance deposits, and portfolio CRM.' },
+  { id: 'barbershops', title: 'Barbershops & Grooming', desc: 'High-speed walk-in queue tokens, beard trims, and fast POS checkout.' },
+  { id: 'chains', title: 'Multi-Branch Chains', desc: 'Centralized HQ control, multi-location inventory, and franchise royalty.' }
+];
+
 export const ROLES_DATA: RoleData[] = [
   {
     id: 'customer',
     title: 'Customer Experience',
     subtitle: 'Elevate every client touchpoint',
-    badge: 'FOR SALON GUESTS',
-    quote: 'A seamless, friction-free salon visit from booking to checkout.',
-    description: 'Customers discover services, view transparent pricing, book 24/7 online, receive live queue token updates on WhatsApp, and earn automatic loyalty points on every visit.',
+    badge: 'FOR GUESTS & CLIENTS',
+    quote: 'A seamless, friction-free visit from online booking to instant checkout.',
+    description: 'Clients discover hair, skin, spa, and makeup services, view transparent prices, book 24/7 online, receive live queue token updates on WhatsApp, and earn automatic loyalty points on every visit.',
     capabilities: [
-      'Discover services & transparent pricing',
-      'Instant online booking & rescheduling',
+      'Discover services, bridal packages & transparent pricing',
+      'Instant 24/7 online booking for salons, spas & makeup artists',
       'Live queue token tracking with estimated wait times',
       'Digital invoices delivered directly via WhatsApp',
       'Automated loyalty reward points & 1-click rebooking'
     ],
-    ctaText: 'Give Customers a Better Salon Experience',
+    ctaText: 'Give Clients a Better Experience',
     metricLabel: 'Customer Retention Rate',
     metricValue: '+38%',
     iconName: 'User',
@@ -23,9 +32,9 @@ export const ROLES_DATA: RoleData[] = [
       title: 'Customer Self-Service Portal & Token #A27',
       status: 'In Queue • 2 ahead',
       items: [
-        { label: 'Booking', value: 'Hair Cut & Styling (45 mins)' },
+        { label: 'Booking', value: 'Bridal Makeup & Hair Styling (90 mins)' },
         { label: 'Estimated Wait', value: '14 mins remaining', color: 'emerald' },
-        { label: 'Assigned Stylist', value: 'Rahul Sharma (Senior)' },
+        { label: 'Assigned Stylist/Artist', value: 'Rahul Sharma (Master Artist)' },
         { label: 'Loyalty Points Earned', value: '450 pts (₹450 value)', color: 'purple' }
       ],
       actions: ['Track Live Queue', 'View Services', 'Pay via UPI/Card']
@@ -33,16 +42,16 @@ export const ROLES_DATA: RoleData[] = [
   },
   {
     id: 'receptionist',
-    title: 'Receptionist Experience',
-    subtitle: 'Make the front desk fast & stress-free',
-    badge: 'FOR FRONT DESK STAFF',
-    quote: 'Less clicking. Less waiting. More customers served gracefully.',
-    description: 'Empower receptionists to check-in appointments in 1 click, assign walk-ins with instant queue tokens, lookup customer histories, and process POS bills in under 10 seconds.',
+    title: 'Front Desk Experience',
+    subtitle: 'Make front desk & reception fast & stress-free',
+    badge: 'FOR RECEPTION & FRONT DESK',
+    quote: 'Less clicking. Less waiting. More guests served gracefully.',
+    description: 'Empower front desk staff to check-in appointments in 1 click, assign walk-ins with instant queue tokens, lookup client histories, and process POS bills in under 8 seconds.',
     capabilities: [
       '1-click appointment check-in & walk-in queue creation',
       'Instant customer lookup by phone or name',
       'Unified POS checkout supporting cash, card, & digital payments',
-      'Real-time stylist floor availability tracking',
+      'Real-time floor, spa room & artist availability tracking',
       'Automated WhatsApp appointment confirmations'
     ],
     ctaText: 'Streamline Your Front Desk Operations',
@@ -58,19 +67,19 @@ export const ROLES_DATA: RoleData[] = [
         { label: 'Payment Mode', value: 'Split: Cash ₹500 + UPI ₹1,200', color: 'indigo' },
         { label: 'WhatsApp Invoice', value: 'Sent to +91 98765****', color: 'emerald' }
       ],
-      actions: ['New Walk-In', 'Fast Checkout', 'Assign Stylist']
+      actions: ['New Walk-In', 'Fast Checkout', 'Assign Specialist']
     }
   },
   {
     id: 'manager',
     title: 'Manager Experience',
-    subtitle: 'Know what’s happening on your salon floor',
-    badge: 'FOR SALON MANAGERS',
-    quote: 'Run the salon floor with absolute confidence and real-time operational control.',
-    description: 'Monitor live queue positions, balance staff workloads, handle peak walk-in surges, track attendance, manage inventory usage, and resolve delays before customers notice.',
+    subtitle: 'Know what’s happening on your floor or studio',
+    badge: 'FOR MANAGERS & FLOOR LEADS',
+    quote: 'Run the salon, parlour, or spa floor with absolute confidence.',
+    description: 'Monitor live queue positions, balance staff workloads, manage spa rooms & makeup stations, track attendance, manage inventory usage, and resolve delays before clients notice.',
     capabilities: [
-      'Real-time floor dashboard showing active, waiting, and completed services',
-      'Dynamic staff queue distribution & delay alerts',
+      'Real-time floor dashboard showing active chairs, spa rooms & stations',
+      'Dynamic queue distribution & delay alerts',
       'Live stock consumption tracking and low inventory warnings',
       'Daily register closure and cash drawer reconciliation',
       'Operational performance metrics per shift'
@@ -80,43 +89,43 @@ export const ROLES_DATA: RoleData[] = [
     metricValue: '-42%',
     iconName: 'Sliders',
     mockUi: {
-      title: 'Salon Floor & Queue Command Center',
-      status: 'Peak Hours • 6 Chairs Active',
+      title: 'Floor, Spa & Studio Command Center',
+      status: 'Peak Hours • 6 Stations Active',
       items: [
         { label: 'Active Queue', value: '3 Waiting (Avg 12 min wait)' },
-        { label: 'Staff Utilization', value: '88% (5/6 Stylists busy)' },
-        { label: 'Low Stock Alert', value: 'L’Oréal Color Shampoo (2 left)', color: 'amber' },
+        { label: 'Staff Utilization', value: '88% (5/6 Artists busy)' },
+        { label: 'Low Stock Alert', value: 'L’Oréal Hair Spa Cream (2 left)', color: 'amber' },
         { label: 'Floor Efficiency', value: 'On Track (+12% vs yesterday)', color: 'emerald' }
       ],
-      actions: ['Reassign Stylist', 'Add Chair', 'Override Discount']
+      actions: ['Reassign Artist', 'Add Station', 'Override Discount']
     }
   },
   {
     id: 'stylist',
-    title: 'Stylist / Beautician Experience',
-    subtitle: 'Know your next customer before they sit down',
-    badge: 'FOR ARTISTS & BEAUTICIANS',
-    quote: 'Focus entirely on creative service. Salon OS handles the rest.',
-    description: 'Stylists see upcoming client profiles, past formulas, service preferences, personal daily schedule, service timer, and real-time commission earnings right on their mobile device.',
+    title: 'Stylist & Makeup Artist Experience',
+    subtitle: 'Know your next client before they sit down',
+    badge: 'FOR ARTISTS, THERAPISTS & BEAUTICIANS',
+    quote: 'Focus entirely on creative beauty service. Salon OS handles the rest.',
+    description: 'Artists, beauticians, and therapists see upcoming client profiles, skin/hair preferences, past formulas, service timers, and real-time commission earnings right on their mobile device.',
     capabilities: [
-      'Instant view of next customer, service list, and special notes',
-      'Historical formula & product preference access',
+      'Instant view of next client, service list, and special notes',
+      'Historical color formulas, shade preferences & skin consultation notes',
       'Service duration timer & status updates',
       'Transparent live daily commission & tip tracker',
       'Personal appointment schedule & break manager'
     ],
     ctaText: 'Motivate Your Creative Team',
-    metricLabel: 'Stylist Service Efficiency',
+    metricLabel: 'Artist Service Efficiency',
     metricValue: '+24%',
     iconName: 'Scissors',
     mockUi: {
-      title: 'Stylist Mobile Workstation',
+      title: 'Artist & Beautician Workstation',
       status: 'Service #4 of 7 Today',
       items: [
-        { label: 'Current Guest', value: 'Anita Roy • Keratin Treatment' },
-        { label: 'Past Preference', value: 'Prefers ammonia-free, low heat' },
-        { label: 'Elapsed Time', value: '32 min / 60 min', color: 'indigo' },
-        { label: 'Today’s Commission', value: '₹2,840 earned (+₹450 tips)', color: 'emerald' }
+        { label: 'Current Guest', value: 'Anita Roy • Bridal HD Makeup & Hair' },
+        { label: 'Past Preference', value: 'Prefers matte finish, low heat styling' },
+        { label: 'Elapsed Time', value: '45 min / 90 min', color: 'indigo' },
+        { label: 'Today’s Commission', value: '₹3,840 earned (+₹650 tips)', color: 'emerald' }
       ],
       actions: ['Start Timer', 'Add Product Used', 'Complete Service']
     }
@@ -125,8 +134,8 @@ export const ROLES_DATA: RoleData[] = [
     id: 'owner',
     title: 'Owner Command Center',
     subtitle: 'Know your business without being everywhere',
-    badge: 'FOR SALON OWNERS & INVESTORS',
-    quote: 'Your entire multi-branch salon business. Accessible anytime, anywhere.',
+    badge: 'FOR BUSINESS OWNERS & INVESTORS',
+    quote: 'Your entire salon, parlour, spa, or makeup studio business. Accessible anytime.',
     description: 'Get bird’s-eye visibility over daily revenue, net profit margins, customer acquisition costs, staff performance rankings, inventory valuation, and multi-branch rollups with conversational AI insights.',
     capabilities: [
       'Real-time multi-branch revenue & profit metrics',
@@ -135,20 +144,20 @@ export const ROLES_DATA: RoleData[] = [
       'Conversational AI Business Assistant for deep performance analysis',
       'Centralized multi-location inventory & pricing control'
     ],
-    ctaText: 'Take Control of Your Salon Business',
+    ctaText: 'Take Control of Your Business',
     metricLabel: 'Monthly Revenue Growth',
     metricValue: '+31%',
     iconName: 'Building2',
     mockUi: {
       title: 'Owner Executive Dashboard & AI Engine',
-      status: 'Live Updates Across 4 Branches',
+      status: 'Live Updates Across 4 Locations',
       items: [
         { label: 'Today’s Revenue', value: '₹84,250 (+18% YoY)', color: 'emerald' },
         { label: 'Est. Monthly Profit', value: '₹3.42 Lakhs (Net 28%)', color: 'purple' },
         { label: 'Inactive Customers', value: '142 flagged for comeback campaign' },
-        { label: 'AI Alert', value: 'Hair Color revenue down 8% in Branch 2', color: 'amber' }
+        { label: 'AI Alert', value: 'Facial & Spa revenue down 8% in Branch 2', color: 'amber' }
       ],
-      actions: ['Launch AI Campaign', 'View All Branches', 'Export Financials']
+      actions: ['Launch AI Campaign', 'View All Locations', 'Export Financials']
     }
   }
 ];
@@ -157,38 +166,38 @@ export const PLATFORM_MODULES: PlatformModule[] = [
   {
     id: 'appointments',
     title: 'Smart Appointments',
-    shortDesc: 'Eliminate double-bookings and no-shows with online calendar sync & auto-reminders.',
-    fullDesc: 'Comprehensive booking calendar supporting multi-staff scheduling, service durations, buffer times, online booking widget integration, deposit payments, and automated WhatsApp reminders.',
+    shortDesc: 'Eliminate double-bookings & no-shows with online calendar sync for salons, spas & makeup artists.',
+    fullDesc: 'Comprehensive booking calendar supporting multi-staff scheduling, spa room allocation, makeup trial slots, deposit payments, and automated WhatsApp reminders.',
     icon: 'Calendar',
     category: 'core',
-    highlights: ['24/7 Customer self-booking', 'Google Calendar / WhatsApp sync', 'No-show deposit protection', 'Multi-staff drag-and-drop calendar'],
+    highlights: ['24/7 Client self-booking widget', 'Google Calendar / WhatsApp sync', 'No-show deposit protection', 'Multi-staff & room drag-and-drop calendar'],
     sampleMetric: { label: 'No-shows Reduced', value: '-85%' }
   },
   {
     id: 'queue',
     title: 'Live Queue & Token System',
-    shortDesc: 'Eliminate waiting chaos with algorithmic wait-time calculations and digital tokens.',
-    fullDesc: 'Patent-pending queue management engine that computes real-time estimated waiting time based on chair availability, ongoing service duration, and walk-in arrivals.',
+    shortDesc: 'Eliminate waiting chaos in parlours & barbershops with digital queue tokens & wait calculations.',
+    fullDesc: 'Patent-pending queue management engine that computes real-time estimated waiting time based on chair/room availability, ongoing service duration, and walk-in arrivals.',
     icon: 'Users',
     category: 'operations',
     highlights: ['Digital token generation via SMS/WhatsApp', 'Dynamic estimated wait calculation', 'Walk-in vs booked queue balancing', 'Floor manager delay override'],
-    sampleMetric: { label: 'Wait Time Transparency', value: '100%' }
+    sampleMetric: { label: 'Wait Transparency', value: '100%' }
   },
   {
     id: 'crm',
     title: 'Customer CRM 360°',
-    shortDesc: 'Remember every client preference, visit history, formula, and spending pattern.',
-    fullDesc: 'Centralized customer memory bank capturing visit frequencies, favorite stylists, color formulas, service notes, allergy flags, total lifetime value, and automated tags.',
+    shortDesc: 'Remember client skin types, hair formulas, preferred artists, and spending patterns.',
+    fullDesc: 'Centralized customer memory bank capturing visit frequencies, favorite stylists/makeup artists, skin sensitivity flags, color formulas, total lifetime value, and automated tags.',
     icon: 'HeartHandshake',
     category: 'core',
-    highlights: ['Complete service history & photos', 'Custom hair & skin consultation notes', 'Automated birthday & anniversary wishes', 'Lifetime value & risk flags'],
+    highlights: ['Complete service history & photos', 'Custom skin & hair consultation notes', 'Automated birthday & anniversary wishes', 'Lifetime value & risk flags'],
     sampleMetric: { label: 'Repeat Visits Boost', value: '+40%' }
   },
   {
     id: 'pos',
     title: 'Fast POS & Tax Billing',
-    shortDesc: 'Generate tax-compliant GST/VAT bills and collect split payments in under 10 seconds.',
-    fullDesc: 'Built for high-volume salon checkouts. Supports itemized billing, service packages, product sales, dynamic discount approvals, and tax compliance across global markets.',
+    shortDesc: 'Generate tax-compliant GST/VAT bills for services & retail packages in under 8 seconds.',
+    fullDesc: 'Built for high-volume checkouts. Supports itemized billing for salon services, spa packages, bridal makeup advance bills, product sales, dynamic discount approvals, and tax compliance.',
     icon: 'Receipt',
     category: 'core',
     highlights: ['Multi-tax GST/VAT auto-computation', 'Split payments (Cash + UPI + Card)', 'Digital eco-invoices via WhatsApp', 'Discount authorization controls'],
@@ -207,18 +216,18 @@ export const PLATFORM_MODULES: PlatformModule[] = [
   {
     id: 'staff',
     title: 'Staff & Commission Engine',
-    shortDesc: 'Track attendance, shift rosters, automated commission split, and performance rank.',
+    shortDesc: 'Track attendance, rosters, automated commission split for stylists, beauticians & artists.',
     fullDesc: 'Automate complex commission structures (tiered, flat, product vs service), track biometric/PIN attendance, schedule shift rosters, and calculate payouts in one click.',
     icon: 'UserCheck',
     category: 'operations',
-    highlights: ['Tiered commission rules', 'Roster scheduling & break management', 'Tip allocation engine', 'Stylist sales leaderboard'],
+    highlights: ['Tiered commission rules', 'Roster scheduling & break management', 'Tip allocation engine', 'Staff & artist sales leaderboard'],
     sampleMetric: { label: 'Payroll Prep Saved', value: '15 hrs/mo' }
   },
   {
     id: 'inventory',
     title: 'Smart Stock & Consumption',
     shortDesc: 'Link service usage directly to stock levels with auto-deduction and reorder alerts.',
-    fullDesc: 'Tracks backbar consumption during services alongside retail inventory. Automatically reduces stock when a service is billed and generates vendor purchase orders.',
+    fullDesc: 'Tracks backbar product consumption (shampoos, facial creams, makeup products) alongside retail inventory. Automatically reduces stock when a service is billed.',
     icon: 'Package',
     category: 'operations',
     highlights: ['Backbar usage tracking', 'Low-stock automated alerts', 'Supplier purchase order generator', 'Audit & stock shrinkage tracking'],
@@ -228,7 +237,7 @@ export const PLATFORM_MODULES: PlatformModule[] = [
     id: 'memberships',
     title: 'Memberships & Packages',
     shortDesc: 'Create recurring membership plans and prepaid service packages for steady cashflow.',
-    fullDesc: 'Build VIP monthly memberships, credit wallets, and bundled packages (e.g. 5 Hair Spas + 1 Free) with automated credit track and expiry alerts.',
+    fullDesc: 'Build VIP monthly memberships, credit wallets, and bundled packages (e.g. 5 Facials + 1 Free or Bridal Package Bundles) with automated credit track and expiry alerts.',
     icon: 'Crown',
     category: 'growth',
     highlights: ['Recurring auto-debit plans', 'Prepaid package credit balance', 'VIP tier discounts', 'Expiration & balance notifications'],
@@ -271,13 +280,13 @@ export const PLATFORM_MODULES: PlatformModule[] = [
     fullDesc: 'Visual reporting suite analyzing service popularity, peak footfall hours, average ticket size, staff productivity, customer acquisition channels, and net profit.',
     icon: 'BarChart3',
     category: 'intelligence',
-    highlights: ['40+ Standard salon reports', 'Footfall & peak hour heatmaps', 'Product vs service margin split', 'Export to Excel / PDF'],
+    highlights: ['40+ Standard business reports', 'Footfall & peak hour heatmaps', 'Product vs service margin split', 'Export to Excel / PDF'],
     sampleMetric: { label: 'Owner Visibility', value: '100%' }
   },
   {
     id: 'ai',
     title: 'Conversational AI Assistant',
-    shortDesc: 'Ask questions about your salon in plain English and get actionable strategic advice.',
+    shortDesc: 'Ask questions about your business in plain English and get actionable strategic advice.',
     fullDesc: 'Built-in AI business intelligence assistant that analyzes raw operational data to answer queries like "Why is revenue down in Branch 2?" and executes corrective campaigns.',
     icon: 'Bot',
     category: 'intelligence',
@@ -287,12 +296,12 @@ export const PLATFORM_MODULES: PlatformModule[] = [
 ];
 
 export const WORKFLOW_STAGES = [
-  { id: 'discover', step: '01', title: 'DISCOVER', desc: 'Customer discovers your salon via Instagram, Google Maps, or Website widget.', icon: 'Search' },
-  { id: 'book', step: '02', title: 'BOOK', desc: 'Customer selects service, preferred stylist, & time slot in under 40 seconds.', icon: 'CalendarCheck' },
+  { id: 'discover', step: '01', title: 'DISCOVER', desc: 'Client discovers your salon, parlour, spa, or makeup studio online.', icon: 'Search' },
+  { id: 'book', step: '02', title: 'BOOK', desc: 'Client selects service/artist, preferred time slot, or pays advance deposit.', icon: 'CalendarCheck' },
   { id: 'arrive', step: '03', title: 'ARRIVE', desc: 'Front desk receives automatic check-in notification as guest enters.', icon: 'MapPin' },
   { id: 'queue', step: '04', title: 'QUEUE', desc: 'Smart queue token issued with live estimated wait time sent to guest phone.', icon: 'Clock' },
-  { id: 'service', step: '05', title: 'SERVICE', desc: 'Stylist sees guest preferences & notes on workstation tablet before starting.', icon: 'Scissors' },
-  { id: 'bill', step: '06', title: 'BILL', desc: 'Completed service auto-flows to POS with exact tax & discount rules.', icon: 'Receipt' },
+  { id: 'service', step: '05', title: 'SERVICE', desc: 'Artist or beautician sees client preferences & formula notes on tablet.', icon: 'Scissors' },
+  { id: 'bill', step: '06', title: 'BILL', desc: 'Completed service auto-flows to POS with exact tax & package discount rules.', icon: 'Receipt' },
   { id: 'pay', step: '07', title: 'PAY', desc: 'Guest pays via UPI, Card, Wallet or Cash; invoice sent on WhatsApp instantly.', icon: 'CreditCard' },
   { id: 'rebook', step: '08', title: 'REBOOK', desc: 'System earns loyalty points & sends 30-day automated rebooking prompt.', icon: 'RotateCw' },
   { id: 'grow', step: '09', title: 'GROW', desc: 'Owner views real-time revenue, profit & AI growth insights across branches.', icon: 'TrendingUp' }
@@ -339,47 +348,47 @@ export const REGIONAL_WORKFLOWS: RegionalWorkflow[] = [
     id: 'global',
     country: 'Global / Rest of World',
     flag: '🌎',
-    headline: 'Unified Multi-Currency Cloud Infrastructure for World Salons',
+    headline: 'Unified Multi-Currency Cloud Infrastructure for World Salons & Spas',
     highlights: ['Multi-currency pricing engine supporting 120+ currencies', 'Global cloud hosting with 99.99% uptime guarantee', 'Granular multi-role security & permission isolation', 'API integration readiness for global accounting software'],
     features: ['120+ Currencies', '99.99% Cloud Uptime', 'Role Security Matrix', 'Accounting Sync Ready'],
-    taxComplianceNote: 'Designed as a flexible, worldwide operating system for salon businesses globally.'
+    taxComplianceNote: 'Designed as a flexible, worldwide operating system for beauty & wellness businesses globally.'
   }
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: '1',
-    quote: 'Salon OS completely transformed our 4-branch chain. Our queue wait times dropped by 40% and our repeat bookings increased within 60 days.',
+    quote: 'Salon OS completely transformed our 4-branch salon & spa chain. Our queue wait times dropped by 40% and our repeat bookings increased within 60 days.',
     author: 'Vikramaditya Rao',
     role: 'Founder & Managing Director',
-    salonName: 'Luxe Aesthetics & Hair Studio',
+    salonName: 'Luxe Hair & Spa Studio',
     country: 'India',
     countryFlag: '🇮🇳',
-    businessType: 'Multi-Branch Salon Chain (4 Locations)',
+    businessType: 'Multi-Branch Salon & Spa (4 Locations)',
     rating: 5,
     avatarBg: 'from-violet-600 to-indigo-600'
   },
   {
     id: '2',
-    quote: 'The Live Queue token system and front desk POS are game-changers. Receptionists check customers out in seconds, and WhatsApp invoices are loved by our clients.',
-    author: 'Sarah Jenkins',
-    role: 'Operations Director',
-    salonName: 'Apex Grooming & Spa Co.',
-    country: 'United States',
-    countryFlag: '🇺🇸',
-    businessType: 'Premium Urban Spa & Barbershop',
+    quote: 'As an independent makeup studio, advance deposit booking and WhatsApp confirmation transformed my client workflow. I have zero no-shows for bridal season!',
+    author: 'Ananya Deshmukh',
+    role: 'Celebrity Makeup Artist',
+    salonName: 'Ananya Artistry & Makeup Studio',
+    country: 'India',
+    countryFlag: '🇮🇳',
+    businessType: 'Bridal & Editorial Makeup Studio',
     rating: 5,
-    avatarBg: 'from-blue-600 to-cyan-600'
+    avatarBg: 'from-pink-600 to-rose-600'
   },
   {
     id: '3',
-    quote: 'Having real-time revenue and AI insights on my phone means I no longer need to sit in the salon every hour. I run our 3 locations seamlessly from anywhere.',
+    quote: 'Having real-time revenue, spa room rosters, and AI insights on my phone means I run our 3 locations seamlessly from anywhere.',
     author: 'Elena Rostova',
-    role: 'Salon Owner',
-    salonName: 'Velvet Glow Beauty Lounge',
+    role: 'Salon & Spa Owner',
+    salonName: 'Velvet Glow Beauty & Spa Lounge',
     country: 'United Kingdom',
     countryFlag: '🇬🇧',
-    businessType: 'Boutique Beauty Studio Group',
+    businessType: 'Beauty Parlour & Spa Lounge',
     rating: 5,
     avatarBg: 'from-emerald-600 to-teal-600'
   }
@@ -389,16 +398,16 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    description: 'Perfect for independent salons, boutique studios, and solo stylists getting started.',
+    description: 'Perfect for independent makeup artists, boutique beauty parlours, and solo stylists getting started.',
     monthlyPrice: 2499,
     annualMonthlyPrice: 1999,
-    branches: '1 Branch',
-    staffLimit: 'Up to 3 Staff Members',
+    branches: '1 Location',
+    staffLimit: 'Up to 3 Staff / Artists',
     features: [
       'Appointments & Self-Booking Widget',
       'Live Queue Token Management',
       'Fast POS Billing & Digital Invoices',
-      'Customer CRM & Basic History',
+      'Customer CRM & Formula History',
       'WhatsApp Confirmation Messages',
       'Daily Revenue & Service Reports',
       'Standard Email & Chat Support'
@@ -409,11 +418,11 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'growth',
     name: 'Growth',
     badge: 'MOST POPULAR',
-    description: 'Designed for expanding salons needing full operational control & marketing automation.',
+    description: 'Designed for expanding salons, spas & makeup studios needing full operational control & marketing.',
     monthlyPrice: 4999,
     annualMonthlyPrice: 3999,
-    branches: '1 Branch',
-    staffLimit: 'Up to 10 Staff Members',
+    branches: '1 Location',
+    staffLimit: 'Up to 10 Staff / Specialists',
     features: [
       'Everything in Starter Plan',
       'Automated WhatsApp Retention Campaigns',
@@ -430,15 +439,15 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'business',
     name: 'Business',
-    description: 'Built for multi-branch salon owners requiring centralized cross-location management.',
+    description: 'Built for multi-branch salon, spa & parlour owners requiring centralized cross-location management.',
     monthlyPrice: 9999,
     annualMonthlyPrice: 7999,
-    branches: 'Up to 3 Branches included',
+    branches: 'Up to 3 Locations included',
     staffLimit: 'Up to 25 Staff Members',
     features: [
       'Everything in Growth Plan',
       'Centralized Head Office Multi-Branch View',
-      'Cross-Branch Customer Loyalty Sync',
+      'Cross-Location Customer Loyalty Sync',
       'Granular Role & Permissions Matrix',
       'Bulk Supplier Purchase Orders',
       'Custom AI Revenue Opportunity Alerts',
@@ -450,11 +459,11 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'enterprise',
     name: 'Enterprise',
-    description: 'Tailored for large salon chains, regional franchises, and high-volume brands.',
+    description: 'Tailored for large salon & spa chains, regional franchises, and high-volume beauty brands.',
     monthlyPrice: 19999,
     annualMonthlyPrice: 15999,
-    branches: 'Unlimited Branches',
-    staffLimit: 'Unlimited Staff',
+    branches: 'Unlimited Locations',
+    staffLimit: 'Unlimited Staff & Artists',
     features: [
       'Custom API & Accounting Integration',
       'Franchise Royalty & Audit Controls',
@@ -472,28 +481,28 @@ export const PRICING_PLANS: PricingPlan[] = [
 export const FAQS: FaqItem[] = [
   {
     category: 'General',
-    question: 'What is Salon OS?',
-    answer: 'Salon OS is a complete, end-to-end Salon Operating System that unifies bookings, live queues, customer CRM, POS billing, payments, staff management, inventory, marketing automation, analytics, and AI business insights into one seamless cloud platform.'
+    question: 'What businesses can use Salon OS?',
+    answer: 'Salon OS is built for all hair salons, beauty parlours, spas, wellness centers, makeup studios, independent makeup artists, nail lounges, barbershops, and multi-branch chains.'
   },
   {
     category: 'General',
-    question: 'Is Salon OS only for large salon chains?',
-    answer: 'No! Salon OS is built to scale smoothly whether you are a single-chair independent stylist, a boutique beauty salon, a busy barbershop, a spa, or a 20-branch regional salon chain.'
+    question: 'Is Salon OS suitable for independent makeup artists or solo beauty parlours?',
+    answer: 'Yes! Salon OS has a lightweight Starter plan perfect for solo makeup artists and independent beauty parlours to accept online bookings, collect advance deposits, track client preferences, and send WhatsApp bills.'
   },
   {
     category: 'Operations',
     question: 'Can I manage walk-in customers and appointments together?',
-    answer: 'Yes! Salon OS features a patent-pending Live Queue and token management engine that balances scheduled appointments with unscheduled walk-ins, calculating real-time wait times so your reception desk never gets overcrowded.'
+    answer: 'Yes! Salon OS features a Live Queue and token management engine that balances scheduled appointments with unscheduled walk-ins, calculating real-time wait times so your front desk never gets overcrowded.'
   },
   {
     category: 'Multi-Branch',
-    question: 'Can I manage multiple salon branches from one account?',
+    question: 'Can I manage multiple salon, spa, or parlour branches from one account?',
     answer: 'Absolutely. The Owner Command Center gives you a centralized dashboard to track live revenue, footfall, inventory, staff performance, and profit margins across all your locations in real time.'
   },
   {
     category: 'Permissions',
-    question: 'Can I control what my staff can view or edit?',
-    answer: 'Yes. Salon OS features a granular role-based permission system. You can specify exact rights (View, Create, Edit, Delete, Approve, Refund) for Owners, Managers, Receptionists, and Stylists.'
+    question: 'Can I control what my staff or artists can view or edit?',
+    answer: 'Yes. Salon OS features a granular role-based permission system. You can specify exact rights (View, Create, Edit, Delete, Approve, Refund) for Owners, Managers, Receptionists, Stylists, and Beauticians.'
   },
   {
     category: 'Billing & POS',
@@ -507,22 +516,22 @@ export const FAQS: FaqItem[] = [
   },
   {
     category: 'Staff',
-    question: 'Can Salon OS calculate staff commissions automatically?',
+    question: 'Can Salon OS calculate staff & artist commissions automatically?',
     answer: 'Yes. You can define flexible commission rules (tiered percentages, flat service fees, or retail product bonuses). The system tracks daily completed services and generates accurate commission reports instantly.'
   },
   {
     category: 'AI Assistant',
     question: 'What can I ask the AI Business Assistant?',
-    answer: 'You can ask operational and financial questions in plain natural language, such as "Why did revenue drop in Branch 2?", "Which stylists had the highest upsells this week?", or "Show me customers at risk of churning."'
+    answer: 'You can ask operational and financial questions in plain natural language, such as "Why did revenue drop in Branch 2?", "Which stylists/artists had the highest upsells this week?", or "Show me customers at risk of churning."'
   },
   {
     category: 'Global',
     question: 'Is Salon OS available in my country?',
-    answer: 'Yes! Salon OS is engineered as a global SaaS application supporting salons across India, USA, UK, Europe, Africa, the Middle East, Asia-Pacific, and rest of the world.'
+    answer: 'Yes! Salon OS is engineered as a global SaaS application supporting businesses across India, USA, UK, Europe, Africa, the Middle East, Asia-Pacific, and rest of the world.'
   },
   {
     category: 'Onboarding',
-    question: 'How long does it take to set up Salon OS in my salon?',
+    question: 'How long does it take to set up Salon OS in my business?',
     answer: 'You can be up and running in less than 15 minutes! Import your staff list and services, set your operating hours, and start taking bookings and issuing queue tokens immediately.'
   }
 ];
@@ -530,22 +539,22 @@ export const FAQS: FaqItem[] = [
 export const AI_PRESET_PROMPTS = [
   {
     prompt: 'Why is revenue down this month?',
-    answer: 'Revenue is down 8.4% primarily due to a 22% decline in Hair Color bookings and lower weekday afternoon traffic. Recommendation: Re-engage 146 inactive clients who haven’t visited in 60+ days.',
+    answer: 'Revenue is down 8.4% primarily due to a 22% decline in Hair Color & Facial bookings and lower weekday traffic. Recommendation: Re-engage 146 inactive clients who haven’t visited in 60+ days.',
     actionLabel: 'Launch Comeback Campaign'
   },
   {
     prompt: 'Which service has the highest profit margin?',
-    answer: 'Keratin Treatment has your highest net margin (74%), generating ₹1,850 profit per 90-min session. Recommendation: Create a package offer with Hair Spa to boost average bill value by 18%.',
-    actionLabel: 'Create Keratin Bundle'
+    answer: 'Keratin Treatment & Hydra Facial have your highest net margins (74%), generating ₹1,850+ profit per session. Recommendation: Create a bundled package offer to boost average bill value by 18%.',
+    actionLabel: 'Create Service Bundle'
   },
   {
     prompt: 'Which staff member is performing best this week?',
-    answer: 'Rahul Sharma leads with ₹42,500 in service sales and a 94% client retention rate. Recommendation: Assign high-value keratin walk-ins to Rahul during peak Saturday slots.',
+    answer: 'Rahul Sharma leads with ₹42,500 in service sales and a 94% client retention rate. Recommendation: Assign high-value bridal walk-ins to Rahul during peak Saturday slots.',
     actionLabel: 'View Staff Roster'
   },
   {
     prompt: 'Do we have any inventory low-stock alerts?',
-    answer: 'L’Oréal Professional Color Shampoo is at 2 units (below reorder threshold of 5). Recommendation: Generate automated purchase order for Vendor Supply Co.',
+    answer: 'L’Oréal Professional Hair Spa Cream & Facial Kits are at 2 units (below reorder threshold of 5). Recommendation: Generate automated purchase order for Vendor Supply Co.',
     actionLabel: 'Generate Purchase Order'
   }
 ];

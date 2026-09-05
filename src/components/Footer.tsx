@@ -27,11 +27,11 @@ export const Footer: React.FC<FooterProps> = ({ onSelectRegionalPage }) => {
             </div>
 
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
-              The end-to-end Operating System for modern salons, spas, barbershops, and multi-branch chains globally.
+              The end-to-end Operating System for salons, beauty parlours, spas, makeup studios, independent artists, and multi-branch chains globally.
             </p>
 
             <div className="text-[11px] text-slate-500 font-mono">
-              Global Presence: India · USA · UK · Europe · Africa · Worldwide
+              Global Footprint: India · USA · UK · Europe · Africa · Worldwide
             </div>
           </div>
 
@@ -51,11 +51,12 @@ export const Footer: React.FC<FooterProps> = ({ onSelectRegionalPage }) => {
           <div className="space-y-3">
             <div className="font-bold text-white uppercase tracking-wider text-[11px]">Solutions</div>
             <ul className="space-y-2">
-              <li><a href="#roles" className="hover:text-white transition-colors">Independent Salons</a></li>
-              <li><a href="#roles" className="hover:text-white transition-colors">Multi-Branch Salons</a></li>
-              <li><a href="#roles" className="hover:text-white transition-colors">Salon Chains & Franchises</a></li>
-              <li><a href="#modules" className="hover:text-white transition-colors">Spas & Wellness Studios</a></li>
-              <li><a href="#modules" className="hover:text-white transition-colors">Barbershops & Men’s Grooming</a></li>
+              <li><a href="#roles" className="hover:text-white transition-colors">Hair & Beauty Salons</a></li>
+              <li><a href="#roles" className="hover:text-white transition-colors">Beauty Parlours & Skin Clinics</a></li>
+              <li><a href="#roles" className="hover:text-white transition-colors">Spas & Wellness Centers</a></li>
+              <li><a href="#roles" className="hover:text-white transition-colors">Makeup Studios & Artists</a></li>
+              <li><a href="#roles" className="hover:text-white transition-colors">Barbershops & Grooming</a></li>
+              <li><a href="#roles" className="hover:text-white transition-colors">Multi-Branch Chains</a></li>
             </ul>
           </div>
 
@@ -65,27 +66,27 @@ export const Footer: React.FC<FooterProps> = ({ onSelectRegionalPage }) => {
             <ul className="space-y-2">
               <li>
                 <button onClick={() => onSelectRegionalPage('india')} className="hover:text-indigo-300 transition-colors flex items-center gap-1.5">
-                  <span>🇮🇳</span> Salon Software India
+                  <span>🇮🇳</span> Software India
                 </button>
               </li>
               <li>
                 <button onClick={() => onSelectRegionalPage('usa')} className="hover:text-indigo-300 transition-colors flex items-center gap-1.5">
-                  <span>🇺🇸</span> Salon Software USA
+                  <span>🇺🇸</span> Software USA
                 </button>
               </li>
               <li>
                 <button onClick={() => onSelectRegionalPage('uk')} className="hover:text-indigo-300 transition-colors flex items-center gap-1.5">
-                  <span>🇬🇧</span> Salon Software UK & EU
+                  <span>🇬🇧</span> Software UK & EU
                 </button>
               </li>
               <li>
                 <button onClick={() => onSelectRegionalPage('africa')} className="hover:text-indigo-300 transition-colors flex items-center gap-1.5">
-                  <span>🌍</span> Salon Software Africa
+                  <span>🌍</span> Software Africa
                 </button>
               </li>
               <li>
                 <button onClick={() => onSelectRegionalPage('global')} className="hover:text-indigo-300 transition-colors flex items-center gap-1.5">
-                  <span>🌎</span> Global Salon Software
+                  <span>🌎</span> Global Software
                 </button>
               </li>
             </ul>
@@ -96,7 +97,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectRegionalPage }) => {
         {/* Bottom Legal Copyright */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
           <div>
-            © {new Date().getFullYear()} Salon OS Inc. All rights reserved. The Operating System for Your Salon.
+            © {new Date().getFullYear()} Salon OS Inc. All rights reserved. The Operating System for Salons, Spas, Parlours & Makeup Studios.
           </div>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-slate-300">Privacy Policy</a>
