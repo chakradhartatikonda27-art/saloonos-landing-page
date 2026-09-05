@@ -17,44 +17,44 @@ export const BeforeAfter: React.FC<BeforeAfterProps> = ({ onOpenDemo }) => {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-[#080C14] border-t border-slate-800 relative">
+    <section className="py-20 md:py-28 bg-[#080C14] theme-light:bg-slate-50 border-t border-slate-800 theme-light:border-slate-200 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/60 border border-rose-500/30 text-rose-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/80 theme-light:bg-rose-50 border border-rose-500/30 text-rose-300 theme-light:text-rose-800 text-xs font-semibold">
             <span>TRANSFORMATION METRICS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white theme-light:text-slate-900 tracking-tight">
             Replace the Chaos <br />
             <span className="text-gradient-purple">With One System.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-base sm:text-lg text-slate-300 theme-light:text-slate-600">
             See how Salon OS transforms daily friction into smooth, predictable business growth.
           </p>
         </div>
 
         {/* Comparison Table */}
-        <div className="mt-14 max-w-5xl mx-auto glass-card rounded-2xl p-6 md:p-8 border border-slate-800 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 text-xs font-bold uppercase tracking-wider pb-3 border-b border-slate-800 text-slate-400">
+        <div className="mt-14 max-w-5xl mx-auto glass-card rounded-2xl p-6 md:p-8 border border-slate-800 theme-light:border-slate-200 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 text-xs font-bold uppercase tracking-wider pb-3 border-b border-slate-800 theme-light:border-slate-200 text-slate-400 theme-light:text-slate-600">
             <div className="md:col-span-3">Salon Operation</div>
-            <div className="md:col-span-4 text-rose-400">Before Salon OS (Chaos)</div>
-            <div className="md:col-span-5 text-emerald-400">With Salon OS (Unified)</div>
+            <div className="md:col-span-4 text-rose-400 theme-light:text-rose-700">Before Salon OS (Chaos)</div>
+            <div className="md:col-span-5 text-emerald-400 theme-light:text-emerald-700">With Salon OS (Unified)</div>
           </div>
 
           <div className="space-y-3">
             {comparisons.map((row, idx) => (
-              <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs items-center">
-                <div className="md:col-span-3 font-bold text-white font-heading">{row.area}</div>
-                <div className="md:col-span-4 text-slate-400 flex items-start gap-2">
+              <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 p-3.5 rounded-xl bg-slate-900/60 theme-light:bg-slate-50 border border-slate-800 theme-light:border-slate-200 text-xs items-center">
+                <div className="md:col-span-3 font-bold text-white theme-light:text-slate-900 font-heading">{row.area}</div>
+                <div className="md:col-span-4 text-slate-400 theme-light:text-slate-700 flex items-start gap-2 bg-rose-950/20 theme-light:bg-rose-50/80 p-2.5 rounded-lg border border-rose-900/30 theme-light:border-rose-200">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
-                  <span>{row.before}</span>
+                  <span className="theme-light:text-rose-950 font-medium">{row.before}</span>
                 </div>
-                <div className="md:col-span-5 text-slate-200 font-medium flex items-start gap-2 bg-indigo-950/30 p-2.5 rounded-lg border border-indigo-800/40">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>{row.after}</span>
+                <div className="md:col-span-5 text-slate-200 theme-light:text-slate-900 font-medium flex items-start gap-2 bg-indigo-950/30 theme-light:bg-emerald-50/90 p-2.5 rounded-lg border border-indigo-800/40 theme-light:border-emerald-200">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 theme-light:text-emerald-600 shrink-0 mt-0.5" />
+                  <span className="theme-light:text-emerald-950 font-semibold">{row.after}</span>
                 </div>
               </div>
             ))}

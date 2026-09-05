@@ -74,10 +74,24 @@
   .navbar{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:1180px;margin:0 auto;}
   .logo{font-weight:800;font-size:19px;letter-spacing:-0.02em;display:flex;align-items:center;gap:9px;}
   .logo-mark{width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,var(--gold),var(--gold-bright));flex-shrink:0;}
-  .nav-links{display:flex;gap:32px;font-size:15px;color:var(--cream-dim);}
+  .nav-links{display:flex;gap:28px;font-size:14.5px;color:var(--cream-dim);}
   .nav-links a:hover{color:var(--gold);}
-  .nav-right{display:flex;align-items:center;gap:18px;font-size:15px;}
-  .nav-cta{display:flex;align-items:center;gap:16px;}
+  .nav-right{display:flex;align-items:center;gap:14px;font-size:14.5px;}
+
+  /* Currency Switcher Dropdown */
+  .curr-select{
+    background:var(--plum-800);
+    border:1px solid var(--line);
+    color:var(--cream);
+    font-family:var(--font-sans);
+    font-size:13px;
+    font-weight:600;
+    padding:6px 12px;
+    border-radius:var(--radius-s);
+    cursor:pointer;
+    outline:none;
+  }
+
   .hamburger{display:none;background:none;border:none;color:var(--cream);font-size:22px;cursor:pointer;}
   
   /* Mobile drawer */
@@ -99,7 +113,7 @@
   .mobile-menu a{font-size:16px;font-weight:600;color:var(--cream);text-decoration:none;}
   .mobile-menu a:hover{color:var(--gold);}
 
-  @media (max-width:860px){
+  @media (max-width:960px){
     .nav-links{display:none;}
     .nav-right a.login{display:none;}
     .hamburger{display:block;}
@@ -152,6 +166,47 @@
   .trust-inner span{white-space:nowrap;}
   .trust-label{color:var(--cream-dim);font-size:14px;margin-bottom:18px;text-align:center;}
 
+  /* ROI CALCULATOR SECTION */
+  .calc-card{
+    background:var(--plum-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius-m);
+    padding:36px;
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width:800px){ .calc-card{grid-template-columns:1fr; gap:28px;} }
+  .calc-group{margin-bottom:24px;}
+  .calc-label{display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;margin-bottom:8px;}
+  .calc-label span:last-child{color:var(--gold-bright);font-family:var(--font-mono);}
+  .calc-slider{
+    width:100%;
+    accent-color:var(--gold);
+    height:6px;
+    background:var(--plum-700);
+    border-radius:4px;
+    outline:none;
+    cursor:pointer;
+  }
+  .calc-result-box{
+    background:var(--plum-900);
+    border:1px solid var(--gold);
+    border-radius:var(--radius-m);
+    padding:28px;
+    text-align:center;
+    box-shadow:0 12px 30px rgba(43,22,37,0.08);
+  }
+  .calc-result-num{
+    font-family:var(--font-mono);
+    font-size:38px;
+    font-weight:700;
+    color:var(--gold-bright);
+    margin:8px 0;
+  }
+
   /* PROBLEM */
   .problem-head{text-align:center;max-width:640px;margin:0 auto 56px;}
   .problem-head h2{margin:0 auto;}
@@ -195,14 +250,16 @@
   .role-visual .row:last-child{border-bottom:none;}
   .role-visual .row span:last-child{color:var(--gold-bright);font-family:var(--font-mono);}
 
-  /* QUEUE */
-  .queue-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center;margin-top:48px;}
+  /* QUEUE SIMULATOR ENHANCEMENT */
+  .queue-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;margin-top:48px;}
   @media (max-width:800px){.queue-layout{grid-template-columns:1fr;}}
   .token-card{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:32px;text-align:center;}
   .token-num{font-family:var(--font-mono);font-size:42px;color:var(--gold-bright);font-weight:600;letter-spacing:1px;}
   .token-sub{color:var(--mute);font-size:14px;margin-top:6px;}
   .token-wait{margin-top:18px;font-size:15px;}
   .token-wait b{color:var(--cream);}
+  .queue-controls{display:flex;gap:10px;margin-top:20px;justify-content:center;flex-wrap:wrap;}
+
   .queue-dash{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:8px;}
   .queue-dash .row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;font-size:14px;border-bottom:1px solid var(--line);}
   .queue-dash .row:last-child{border-bottom:none;}
@@ -218,14 +275,35 @@
   .pay-methods{display:flex;gap:10px;justify-content:center;margin-top:36px;flex-wrap:wrap;}
   .pay-chip{border:1px solid var(--line);border-radius:20px;padding:7px 16px;font-size:13px;color:var(--cream-dim);}
 
-  /* AI SECTION */
-  .ai-chat{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;margin-top:48px;max-width:760px;}
-  .msg{margin-bottom:16px;max-width:80%;font-size:14.5px;line-height:1.55;}
+  /* AI SECTION & LIVE SIMULATOR */
+  .ai-chat{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;margin-top:28px;max-width:760px;}
+  .msg{margin-bottom:16px;max-width:85%;font-size:14.5px;line-height:1.55;}
   .msg-owner{margin-left:auto;background:var(--plum-700);padding:12px 16px;border-radius:12px 12px 2px 12px;}
   .msg-ai{background:var(--plum-900);border:1px solid var(--line);padding:12px 16px;border-radius:12px 12px 12px 2px;color:var(--cream-dim);}
   .ai-actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
   .ai-chip{font-size:12.5px;border:1px solid var(--gold);color:var(--gold-bright);padding:6px 12px;border-radius:20px;background:transparent;cursor:pointer;font-family:var(--font-sans);transition:background .15s ease, color .15s ease;}
   .ai-chip:hover{background:var(--gold);color:#fff;}
+
+  /* AI Chat Custom Input */
+  .ai-input-bar{
+    display:flex;
+    gap:10px;
+    margin-top:16px;
+  }
+  .ai-input{
+    flex:1;
+    background:var(--plum-900);
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    padding:12px 16px;
+    font-family:var(--font-sans);
+    font-size:14px;
+    color:var(--cream);
+    outline:none;
+  }
+  .ai-input:focus{
+    border-color:var(--gold);
+  }
 
   /* GLOBAL */
   .global-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-m);overflow:hidden;margin-top:48px;}
@@ -372,12 +450,19 @@
     <div class="logo"><span class="logo-mark"></span>Salon OS</div>
     <nav class="nav-links">
       <a href="#ai-brain">AI</a>
-      <a href="#platform">Product</a>
+      <a href="#roi-calculator">ROI Calc</a>
+      <a href="#queue">Live Queue</a>
       <a href="#roles">Solutions</a>
       <a href="#modules">Features</a>
       <a href="#pricing">Pricing</a>
     </nav>
     <div class="nav-right">
+      <select id="curr-switcher" class="curr-select" onchange="switchCurrency(this.value)" aria-label="Select Currency">
+        <option value="INR">🇮🇳 INR (₹)</option>
+        <option value="USD">🇺🇸 USD ($)</option>
+        <option value="GBP">🇬🇧 GBP (£)</option>
+        <option value="EUR">🇪🇺 EUR (€)</option>
+      </select>
       <a class="login" href="javascript:void(0)" onclick="showToast('Salon OS Login portal ready')">Login</a>
       <a class="btn btn-gold" href="#pricing" style="padding:9px 18px;font-size:14px;">Start Free</a>
       <button class="hamburger" aria-label="Menu" id="hamburger-btn">☰</button>
@@ -385,7 +470,8 @@
   </div>
   <div class="mobile-menu" id="mobile-menu">
     <a href="#ai-brain" onclick="closeMobileMenu()">AI</a>
-    <a href="#platform" onclick="closeMobileMenu()">Product</a>
+    <a href="#roi-calculator" onclick="closeMobileMenu()">ROI Calc</a>
+    <a href="#queue" onclick="closeMobileMenu()">Live Queue</a>
     <a href="#roles" onclick="closeMobileMenu()">Solutions</a>
     <a href="#modules" onclick="closeMobileMenu()">Features</a>
     <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
@@ -409,9 +495,9 @@
       <div class="stage-card stage-main">
         <div class="fc-title">OWNER DASHBOARD</div>
         <div class="stage-kpi-row">
-          <div class="kpi"><div class="num">₹42,850</div><div class="lbl">Today's Revenue</div></div>
+          <div class="kpi"><div class="num" data-fmt-val="42850">₹42,850</div><div class="lbl">Today's Revenue</div></div>
           <div class="kpi"><div class="num">128</div><div class="lbl">Customers</div></div>
-          <div class="kpi"><div class="num">₹1,245</div><div class="lbl">Avg. Bill</div></div>
+          <div class="kpi"><div class="num" data-fmt-val="1245">₹1,245</div><div class="lbl">Avg. Bill</div></div>
         </div>
         <div class="bar-row">
           <div class="bar" style="height:40%"></div><div class="bar" style="height:65%"></div>
@@ -422,8 +508,8 @@
       </div>
       <div class="stage-card float-card fc1">
         <div class="fc-title">LIVE QUEUE</div>
-        <div class="fc-row"><span>Token A27</span><span>18 min</span></div>
-        <div class="fc-row"><span>Token A28</span><span>26 min</span></div>
+        <div class="fc-row"><span id="hero-tok1">Token A27</span><span>18 min</span></div>
+        <div class="fc-row"><span id="hero-tok2">Token A28</span><span>26 min</span></div>
       </div>
       <div class="stage-card float-card fc2">
         <div class="fc-title">STAFF</div>
@@ -438,8 +524,8 @@
       </div>
       <div class="stage-card float-card fc4">
         <div class="fc-title">DAILY MIS · SENT ✓</div>
-        <div class="fc-row"><span>Revenue</span><span>₹42,850</span></div>
-        <div class="fc-row"><span>Net collection</span><span>₹38,920</span></div>
+        <div class="fc-row"><span>Revenue</span><span data-fmt-val="42850">₹42,850</span></div>
+        <div class="fc-row"><span>Net collection</span><span data-fmt-val="38920">₹38,920</span></div>
       </div>
     </div>
   </div>
@@ -453,6 +539,52 @@
     </div>
   </div>
 </div>
+
+<!-- ROI CALCULATOR SECTION -->
+<section id="roi-calculator">
+  <div class="wrap">
+    <div class="eyebrow">Interactive Profit Estimator</div>
+    <h2>Calculate how much Salon OS can add to your revenue.</h2>
+    <p style="margin-top:14px;max-width:56ch;">By automating queue times, preventing no-shows, and triggering retention offers, Salon OS typically boosts salon revenue by 18-25%.</p>
+
+    <div class="calc-card">
+      <div>
+        <div class="calc-group">
+          <div class="calc-label">
+            <span>Number of Stylists / Chairs</span>
+            <span id="calc-chairs-val">5 Chairs</span>
+          </div>
+          <input type="range" id="calc-chairs" class="calc-slider" min="1" max="25" value="5" oninput="updateRoiCalc()">
+        </div>
+
+        <div class="calc-group">
+          <div class="calc-label">
+            <span>Daily Customers Served</span>
+            <span id="calc-cust-val">45 / day</span>
+          </div>
+          <input type="range" id="calc-cust" class="calc-slider" min="10" max="200" value="45" oninput="updateRoiCalc()">
+        </div>
+
+        <div class="calc-group">
+          <div class="calc-label">
+            <span>Average Ticket / Service Price</span>
+            <span id="calc-price-val" data-fmt-val="850">₹850</span>
+          </div>
+          <input type="range" id="calc-price" class="calc-slider" min="100" max="4000" step="50" value="850" oninput="updateRoiCalc()">
+        </div>
+      </div>
+
+      <div class="calc-result-box">
+        <div style="font-size:13px;color:var(--mute);font-weight:600;">ESTIMATED MONTHLY GAIN WITH SALON OS</div>
+        <div class="calc-result-num" id="calc-monthly-gain" data-fmt-val="206550">₹2,06,550</div>
+        <div style="font-size:13.5px;color:var(--cream-dim);margin-top:10px;">
+          +18% Extra Revenue from <b>retained customers</b> & <b>faster billing turnaround</b>
+        </div>
+        <button class="btn btn-gold" style="margin-top:20px;width:100%;justify-content:center;" onclick="showToast('ROI Report generated! Contacting advisor.')">Claim Your Revenue Boost</button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="who-its-for">
   <div class="wrap">
@@ -516,11 +648,11 @@
     </div>
     <div class="mis-card">
       <div class="mis-head"><span>SALON OS · DAILY MIS</span><span>Today, 9:12 PM</span></div>
-      <div class="mis-row"><span>💰 Revenue</span><span>₹42,850</span></div>
+      <div class="mis-row"><span>💰 Revenue</span><span data-fmt-val="42850">₹42,850</span></div>
       <div class="mis-row"><span>👥 Customers</span><span>86</span></div>
       <div class="mis-row"><span>📅 Appointments</span><span>61</span></div>
       <div class="mis-row"><span>🚶 Walk-ins</span><span>25</span></div>
-      <div class="mis-row"><span>💳 Collections</span><span>₹40,920</span></div>
+      <div class="mis-row"><span>💳 Collections</span><span data-fmt-val="40920">₹40,920</span></div>
       <div class="mis-row"><span>⚠️ Wait-time alerts</span><span>8</span></div>
       <div class="mis-row"><span>📦 Low-stock items</span><span>3</span></div>
       <div class="mis-insight"><b>AI:</b> Weekday Hair Colour bookings are down 22%. Consider a targeted weekday offer for previous colour customers.</div>
@@ -685,7 +817,7 @@
         <div class="row"><span>Next up</span><span>Anitha R.</span></div>
         <div class="row"><span>Service</span><span>Balayage</span></div>
         <div class="row"><span>Notes</span><span>Sensitive scalp</span></div>
-        <div class="row"><span>Commission today</span><span>₹1,120</span></div>
+        <div class="row"><span>Commission today</span><span data-fmt-val="1120">₹1,120</span></div>
       </div>
     </div>
 
@@ -700,8 +832,8 @@
         <a href="javascript:void(0)" onclick="showToast('Owner Executive View Loaded')" class="btn btn-ghost">Your entire business, at a glance</a>
       </div>
       <div class="role-visual">
-        <div class="row"><span>Monthly revenue</span><span>₹8.4L</span></div>
-        <div class="row"><span>Est. profit</span><span>₹2.1L</span></div>
+        <div class="row"><span>Monthly revenue</span><span data-fmt-val="840000">₹8.4L</span></div>
+        <div class="row"><span>Est. profit</span><span data-fmt-val="210000">₹2.1L</span></div>
         <div class="row"><span>Active branches</span><span>4</span></div>
         <div class="row"><span>AI flag</span><span>146 lapsed customers</span></div>
       </div>
@@ -709,22 +841,29 @@
   </div>
 </section>
 
+<!-- LIVE INTERACTIVE QUEUE SIMULATOR -->
 <section id="queue">
   <div class="wrap">
-    <div class="eyebrow">Live queue</div>
+    <div class="eyebrow">Live Interactive Queue Simulator</div>
     <h2>No more guessing how long customers will wait.</h2>
     <div class="queue-layout">
       <div class="token-card">
         <div class="fc-title" style="text-align:left;margin-bottom:14px;">YOUR TOKEN</div>
-        <div class="token-num">A27</div>
-        <div class="token-sub">2 customers ahead</div>
-        <div class="token-wait">Estimated wait <b>18 min</b></div>
+        <div class="token-num" id="sim-my-token">A27</div>
+        <div class="token-sub"><span id="sim-ahead-count">2</span> customers ahead</div>
+        <div class="token-wait">Estimated wait <b id="sim-wait-time">18 min</b></div>
+        
+        <div class="queue-controls">
+          <button class="btn btn-gold" style="font-size:13px;padding:8px 14px;" onclick="simIssueToken()">🎟️ Issue Walk-In Token</button>
+          <button class="btn btn-ghost" style="font-size:13px;padding:8px 14px;" onclick="simNextCustomer()">💇 Seat Next Customer</button>
+        </div>
       </div>
-      <div class="queue-dash">
-        <div class="row"><span>Divya — Stylist</span><span class="badge badge-free">Available</span></div>
-        <div class="row"><span>Ramesh — Stylist</span><span class="badge badge-busy">In service · 12 min left</span></div>
-        <div class="row"><span>Token A26 — Meera</span><span>In service</span></div>
-        <div class="row"><span>Token A27 — You</span><span>Waiting</span></div>
+
+      <div class="queue-dash" id="sim-dash-rows">
+        <div class="row"><span>Divya — Stylist</span><span class="badge badge-free" id="st-divya">Available</span></div>
+        <div class="row"><span>Ramesh — Stylist</span><span class="badge badge-busy" id="st-ramesh">In service · 12 min left</span></div>
+        <div class="row"><span>Token A26 — Meera</span><span class="badge badge-busy">In service</span></div>
+        <div class="row"><span>Token A27 — You</span><span class="badge badge-busy" style="background:rgba(168,118,58,0.2);">Waiting</span></div>
         <div class="row"><span>Token A28 — Sanjay</span><span>Waiting</span></div>
       </div>
     </div>
@@ -761,12 +900,12 @@
     <div class="two-col" style="margin-top:48px;align-items:start;">
       <div class="mis-card" style="max-width:none;">
         <div class="mis-head"><span>NORMAL SOFTWARE</span></div>
-        <div class="mis-row"><span>Revenue</span><span>₹8.4L</span></div>
+        <div class="mis-row"><span>Revenue</span><span data-fmt-val="840000">₹8.4L</span></div>
         <div class="mis-insight">That's it. You're left to work out why.</div>
       </div>
       <div class="mis-card" style="max-width:none;border-color:var(--gold);">
         <div class="mis-head"><span>SALON OS</span></div>
-        <div class="mis-row"><span>Revenue</span><span>₹8.4L</span></div>
+        <div class="mis-row"><span>Revenue</span><span data-fmt-val="840000">₹8.4L</span></div>
         <div class="mis-row"><span>Hair Colour</span><span>↓ 22%</span></div>
         <div class="mis-row"><span>Walk-ins</span><span>↓ 18%</span></div>
         <div class="mis-insight"><b>AI:</b> Your revenue decline is mainly lower weekday traffic and fewer Hair Colour bookings.</div>
@@ -776,9 +915,10 @@
   </div>
 </section>
 
+<!-- LIVE INTERACTIVE AI CHAT SIMULATOR -->
 <section id="ai">
   <div class="wrap">
-    <div class="eyebrow">AI business assistant</div>
+    <div class="eyebrow">AI Business Assistant</div>
     <h2>Ask your salon anything.</h2>
     <div class="ai-questions">
       <button class="ai-q-chip active" data-q="revenue">Why is revenue down?</button>
@@ -794,6 +934,11 @@
           <button class="ai-chip" onclick="showToast('Campaign draft created')">Launch comeback campaign</button>
           <button class="ai-chip" onclick="showToast('Loading performance charts...')">View Hair Colour performance</button>
         </div>
+      </div>
+
+      <div class="ai-input-bar">
+        <input type="text" id="custom-ai-input" class="ai-input" placeholder="Type your custom question (e.g., How to boost weekend facials?)" onkeypress="if(event.key==='Enter') sendCustomAiQuery()">
+        <button class="btn btn-gold" style="padding:10px 18px;font-size:13.5px;" onclick="sendCustomAiQuery()">Ask AI</button>
       </div>
     </div>
   </div>
@@ -862,7 +1007,7 @@
       <div class="mis-insight" style="margin-top:0;padding-top:0;border-top:none;">"We miss you, Rahul. Your next Hair Spa is 20% off this week."</div>
       <div class="mis-row" style="margin-top:14px;"><span>Sent</span><span>412</span></div>
       <div class="mis-row"><span>Booked</span><span>58</span></div>
-      <div class="mis-row"><span>Revenue</span><span>₹71,400</span></div>
+      <div class="mis-row"><span>Revenue</span><span data-fmt-val="71400">₹71,400</span></div>
     </div>
   </div>
 </section>
@@ -1056,6 +1201,91 @@
 </div>
 
 <script>
+  // Global Currency State & Multi-Currency Switcher
+  const currencies = {
+    INR: { symbol: "₹", rate: 1, suffix: "", locale: "en-IN" },
+    USD: { symbol: "$", rate: 0.012, suffix: "", locale: "en-US" },
+    GBP: { symbol: "£", rate: 0.0094, suffix: "", locale: "en-GB" },
+    EUR: { symbol: "€", rate: 0.011, suffix: "", locale: "de-DE" }
+  };
+  let currentCurr = 'INR';
+
+  function formatMoney(amountInInr) {
+    const c = currencies[currentCurr];
+    const val = amountInInr * c.rate;
+    let formatted;
+    if (val >= 100000 && currentCurr === 'INR') {
+      formatted = '₹' + (val / 100000).toFixed(1) + 'L';
+    } else {
+      formatted = c.symbol + Math.round(val).toLocaleString(c.locale);
+    }
+    return formatted;
+  }
+
+  function switchCurrency(currKey) {
+    if (!currencies[currKey]) return;
+    currentCurr = currKey;
+    
+    // Update all static values with data-fmt-val attribute
+    document.querySelectorAll('[data-fmt-val]').forEach(el => {
+      const baseInr = parseFloat(el.getAttribute('data-fmt-val'));
+      if (!isNaN(baseInr)) {
+        el.textContent = formatMoney(baseInr);
+      }
+    });
+
+    updateRoiCalc();
+    showToast(`Currency updated to ${currKey} (${currencies[currKey].symbol})`);
+  }
+
+  // ROI Calculator Logic
+  function updateRoiCalc() {
+    const chairs = parseInt(document.getElementById('calc-chairs').value);
+    const cust = parseInt(document.getElementById('calc-cust').value);
+    const priceInr = parseFloat(document.getElementById('calc-price').value);
+
+    document.getElementById('calc-chairs-val').textContent = chairs + (chairs === 1 ? ' Chair' : ' Chairs');
+    document.getElementById('calc-cust-val').textContent = cust + ' / day';
+    document.getElementById('calc-price-val').textContent = formatMoney(priceInr);
+
+    // Calculation formula: monthly gain = (cust * price * 30) * 18% boost
+    const monthlyGrossInr = cust * priceInr * 30;
+    const monthlyBoostInr = monthlyGrossInr * 0.18;
+
+    const gainEl = document.getElementById('calc-monthly-gain');
+    gainEl.setAttribute('data-fmt-val', Math.round(monthlyBoostInr));
+    gainEl.textContent = formatMoney(monthlyBoostInr);
+  }
+
+  // Live Queue Simulator
+  let tokenCounter = 28;
+  let queueAhead = 2;
+  let waitMinutes = 18;
+
+  function simIssueToken() {
+    tokenCounter++;
+    queueAhead++;
+    waitMinutes += 8;
+
+    document.getElementById('sim-my-token').textContent = 'A' + tokenCounter;
+    document.getElementById('sim-ahead-count').textContent = queueAhead;
+    document.getElementById('sim-wait-time').textContent = waitMinutes + ' min';
+
+    showToast(`New Token A${tokenCounter} Issued! Est. Wait: ${waitMinutes}m`);
+  }
+
+  function simNextCustomer() {
+    if (queueAhead > 0) {
+      queueAhead--;
+      waitMinutes = Math.max(0, waitMinutes - 8);
+      document.getElementById('sim-ahead-count').textContent = queueAhead;
+      document.getElementById('sim-wait-time').textContent = waitMinutes + ' min';
+      showToast(`Next Customer Seated! ${queueAhead} remaining ahead.`);
+    } else {
+      showToast("You're next in line! Stylist is ready for your service.");
+    }
+  }
+
   // Mobile menu toggle
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -1076,7 +1306,7 @@
     clearTimeout(toastTimeout);
     toastTimeout = setTimeout(() => {
       toast.classList.remove('show');
-    }, 3000);
+    }, 3200);
   }
 
   // Role switcher
@@ -1089,7 +1319,7 @@
     });
   });
 
-  // AI assistant question switcher
+  // AI assistant question switcher & Custom Query Generator
   const aiAnswers = {
     revenue: {
       q: "Why is revenue down?",
@@ -1134,6 +1364,38 @@
     });
   });
 
+  function sendCustomAiQuery() {
+    const input = document.getElementById('custom-ai-input');
+    const query = input.value.trim();
+    if (!query) return;
+
+    document.getElementById('ai-q-text').textContent = query;
+    input.value = '';
+
+    // Generate intelligent AI response dynamically based on keywords
+    let responseText = "";
+    let actionButtons = [];
+
+    const qLower = query.toLowerCase();
+    if (qLower.includes('bridal') || qLower.includes('makeup')) {
+      responseText = "Bridal packages contribute 34% of your Q4 revenue. AI recommends bundling trial runs with pre-bridal skincare treatments 30 days ahead.";
+      actionButtons = [{ label: "Create Bridal Bundle", msg: "Bridal Package Builder Opened" }];
+    } else if (qLower.includes('discount') || qLower.includes('offer') || qLower.includes('monsoon')) {
+      responseText = "AI suggests running a 15% Off Weekday Hair Spa campaign targeting customers who haven't visited in 45 days. Projected conversion: +24%.";
+      actionButtons = [{ label: "Dispatch Offer via WhatsApp", msg: "WhatsApp Broadcast Queued" }];
+    } else if (qLower.includes('waste') || qLower.includes('product') || qLower.includes('inventory')) {
+      responseText = "Product consumption metrics show Developer 20 Vol was over-dispensed by 12% last week. Standardizing portion size saves approx ₹8,500/mo.";
+      actionButtons = [{ label: "Set Usage Portion Guidelines", msg: "Staff Guidelines Updated" }];
+    } else {
+      responseText = `Analyzing salon data for "${query}"... Based on historical booking patterns, optimizing weekday slot scheduling and sending automated WhatsApp reminders increases monthly fill rate by 22%.`;
+      actionButtons = [{ label: "Apply AI Optimization", msg: "Automated Rules Saved" }];
+    }
+
+    const actionsHtml = actionButtons.map(a => `<button class="ai-chip" onclick="showToast('${a.msg}')">${a.label}</button>`).join('');
+    document.getElementById('ai-a-text').innerHTML = responseText + '<div class="ai-actions" id="ai-a-actions">' + actionsHtml + '</div>';
+    showToast("AI Assistant responded");
+  }
+
   // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(item=>{
     const a = item.querySelector('.faq-a');
@@ -1151,6 +1413,9 @@
     if(window.scrollY>10){ header.querySelector('.navbar').style.padding='12px 28px'; }
     else{ header.querySelector('.navbar').style.padding='20px 28px'; }
   });
+
+  // Initial Calculation
+  updateRoiCalc();
 </script>
 
 </body>

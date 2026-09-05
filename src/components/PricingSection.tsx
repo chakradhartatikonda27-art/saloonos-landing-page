@@ -10,42 +10,42 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDemo }) =>
   const [annualBilling, setAnnualBilling] = useState(true);
 
   return (
-    <section id="pricing" className="py-20 md:py-28 relative">
+    <section id="pricing" className="py-20 md:py-28 bg-[#070A11] theme-light:bg-slate-50 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 theme-light:bg-indigo-50 border border-indigo-500/30 text-indigo-300 theme-light:text-indigo-700 text-xs font-semibold">
             <span>TRANSPARENT PRICING</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white theme-light:text-slate-900 tracking-tight">
             Simple Plans. <br />
             <span className="text-gradient-purple">Built to Grow With Your Salon.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-base sm:text-lg text-slate-300 theme-light:text-slate-600">
             No hidden setup fees. No long-term lock-in. Cancel anytime.
           </p>
 
           {/* Billing Cycle Toggle */}
           <div className="pt-4 flex items-center justify-center gap-4">
-            <span className={`text-xs font-bold ${!annualBilling ? 'text-white' : 'text-slate-400'}`}>
+            <span className={`text-xs font-bold ${!annualBilling ? 'text-white theme-light:text-slate-900' : 'text-slate-400 theme-light:text-slate-500'}`}>
               Monthly Billing
             </span>
             
             <button
               onClick={() => setAnnualBilling(!annualBilling)}
-              className="w-14 h-7 rounded-full bg-slate-900 border border-slate-700 p-1 flex items-center transition-colors relative cursor-pointer"
+              className="w-14 h-7 rounded-full bg-slate-900 theme-light:bg-slate-200 border border-slate-700 theme-light:border-slate-300 p-1 flex items-center transition-colors relative cursor-pointer"
             >
               <div className={`w-5 h-5 rounded-full bg-indigo-500 transition-transform ${annualBilling ? 'translate-x-7' : 'translate-x-0'}`} />
             </button>
 
             <div className="flex items-center gap-2">
-              <span className={`text-xs font-bold ${annualBilling ? 'text-white' : 'text-slate-400'}`}>
+              <span className={`text-xs font-bold ${annualBilling ? 'text-white theme-light:text-slate-900' : 'text-slate-400 theme-light:text-slate-500'}`}>
                 Annual Billing
               </span>
-              <span className="px-2 py-0.5 text-[10px] font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full">
+              <span className="px-2 py-0.5 text-[10px] font-extrabold bg-emerald-500/20 theme-light:bg-emerald-100 text-emerald-400 theme-light:text-emerald-800 border border-emerald-500/30 theme-light:border-emerald-300 rounded-full">
                 SAVE 20%
               </span>
             </div>
@@ -61,8 +61,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDemo }) =>
                 key={plan.id}
                 className={`glass-card rounded-2xl p-6 relative flex flex-col justify-between transition-all duration-300 ${
                   plan.isPopular
-                    ? 'border-2 border-indigo-500 shadow-2xl shadow-indigo-600/30 bg-gradient-to-b from-indigo-950/40 via-slate-900 to-slate-900 scale-105'
-                    : 'border border-slate-800 hover:border-slate-700'
+                    ? 'border-2 border-indigo-500 shadow-2xl shadow-indigo-600/30 bg-gradient-to-b from-indigo-950/40 via-slate-900 to-slate-900 theme-light:from-indigo-50/80 theme-light:via-white theme-light:to-white scale-105'
+                    : 'border border-slate-800 theme-light:border-slate-200 hover:border-slate-700'
                 }`}
               >
                 {plan.badge && (
@@ -72,27 +72,27 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDemo }) =>
                 )}
 
                 <div>
-                  <h3 className="text-xl font-bold text-white font-heading">{plan.name}</h3>
-                  <p className="mt-2 text-xs text-slate-400 min-h-[36px]">
+                  <h3 className="text-xl font-bold text-white theme-light:text-slate-900 font-heading">{plan.name}</h3>
+                  <p className="mt-2 text-xs text-slate-400 theme-light:text-slate-600 min-h-[36px]">
                     {plan.description}
                   </p>
 
                   {/* Price Block */}
-                  <div className="mt-6 pt-4 border-t border-slate-800">
+                  <div className="mt-6 pt-4 border-t border-slate-800 theme-light:border-slate-200">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-xs text-slate-400 font-medium">₹</span>
-                      <span className="text-4xl font-extrabold font-heading text-white">{price.toLocaleString()}</span>
-                      <span className="text-xs text-slate-400">/ month</span>
+                      <span className="text-xs text-slate-400 theme-light:text-slate-500 font-medium">₹</span>
+                      <span className="text-4xl font-extrabold font-heading text-white theme-light:text-slate-900">{price.toLocaleString()}</span>
+                      <span className="text-xs text-slate-400 theme-light:text-slate-500">/ month</span>
                     </div>
-                    <div className="text-[10px] text-indigo-400 font-mono mt-1">
+                    <div className="text-[10px] text-indigo-400 theme-light:text-indigo-600 font-mono mt-1 font-bold">
                       {annualBilling ? 'Billed annually' : 'Billed monthly'}
                     </div>
                   </div>
 
                   {/* Limits */}
-                  <div className="mt-4 p-3 rounded-lg bg-slate-900/90 border border-slate-800 text-xs space-y-1">
-                    <div className="font-bold text-white">{plan.branches}</div>
-                    <div className="text-slate-400 text-[11px]">{plan.staffLimit}</div>
+                  <div className="mt-4 p-3 rounded-lg bg-slate-900/90 theme-light:bg-slate-100 border border-slate-800 theme-light:border-slate-200 text-xs space-y-1">
+                    <div className="font-bold text-white theme-light:text-slate-900">{plan.branches}</div>
+                    <div className="text-slate-400 theme-light:text-slate-600 text-[11px]">{plan.staffLimit}</div>
                   </div>
 
                   {/* Features List */}
