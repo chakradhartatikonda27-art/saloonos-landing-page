@@ -22,12 +22,12 @@ export const QueueDifferentiator: React.FC<QueueDifferentiatorProps> = ({ onOpen
   };
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-[#070A11] theme-light:bg-slate-50 relative overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 theme-light:bg-emerald-50 border border-emerald-500/30 text-emerald-400 theme-light:text-emerald-700 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 theme-light:bg-emerald-50 border border-emerald-500/30 text-emerald-400 theme-light:text-emerald-700 text-xs font-semibold">
             <span>PATENT-PENDING QUEUE DIFFERENTIATOR</span>
           </div>
 

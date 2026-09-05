@@ -14,36 +14,36 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({ onOpenDemo }) 
   ];
 
   return (
-    <section className="py-20 md:py-28 relative">
+    <section className="py-20 md:py-28 bg-[#070A11] theme-light:bg-slate-50 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 theme-light:bg-indigo-50 border border-indigo-500/30 text-indigo-300 theme-light:text-indigo-700 text-xs font-semibold">
             <span>STAFF & COMMISSION ENGINE</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white theme-light:text-slate-900 tracking-tight">
             Your Team Is Your Business. <br />
             <span className="text-gradient-purple">Know Who’s Driving Revenue.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-base sm:text-lg text-slate-300 theme-light:text-slate-600">
             Know who's working, who's busy, who's available, and who's earning commissions in real-time.
           </p>
         </div>
 
         {/* Staff Console Grid */}
-        <div className="mt-14 max-w-5xl mx-auto glass-card rounded-2xl p-6 md:p-8 border border-slate-800 space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="mt-14 max-w-5xl mx-auto glass-card rounded-2xl p-6 md:p-8 border border-slate-800 theme-light:border-slate-200 space-y-6">
+          <div className="flex items-center justify-between border-b border-slate-800 theme-light:border-slate-200 pb-4">
             <div className="flex items-center gap-3">
-              <UserCheck className="w-6 h-6 text-indigo-400" />
+              <UserCheck className="w-6 h-6 text-indigo-400 theme-light:text-indigo-600" />
               <div>
-                <h3 className="text-lg font-bold text-white font-heading">Live Staff Floor Roster & Payouts</h3>
-                <div className="text-xs text-slate-400">Shift Roster: 6 Active Stylists • Today's Total Sales: ₹1,24,000</div>
+                <h3 className="text-lg font-bold text-white theme-light:text-slate-900 font-heading">Live Staff Floor Roster & Payouts</h3>
+                <div className="text-xs text-slate-400 theme-light:text-slate-500">Shift Roster: 6 Active Stylists • Today's Total Sales: ₹1,24,000</div>
               </div>
             </div>
-            <span className="px-3 py-1 text-xs font-bold text-emerald-300 bg-emerald-950 border border-emerald-800 rounded-full">
+            <span className="px-3 py-1 text-xs font-bold text-emerald-300 theme-light:text-emerald-800 bg-emerald-950 theme-light:bg-emerald-100 border border-emerald-800 theme-light:border-emerald-300 rounded-full">
               AUTO COMMISSION ACTIVE
             </span>
           </div>

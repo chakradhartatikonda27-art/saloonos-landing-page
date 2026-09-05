@@ -7,21 +7,21 @@ interface MarketingRetentionProps {
 
 export const MarketingRetention: React.FC<MarketingRetentionProps> = ({ onOpenDemo }) => {
   return (
-    <section className="py-20 md:py-28 bg-[#090D16] border-y border-slate-800 relative">
+    <section className="py-20 md:py-28 bg-[#090D16] theme-light:bg-slate-50 border-y border-slate-800 theme-light:border-slate-200 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 theme-light:bg-emerald-50 border border-emerald-500/30 text-emerald-300 theme-light:text-emerald-700 text-xs font-semibold">
             <span>AUTOMATED REBOOKING ENGINE</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white theme-light:text-slate-900 tracking-tight">
             Turn One Visit <br />
             <span className="text-gradient-emerald">Into Many.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-base sm:text-lg text-slate-300 theme-light:text-slate-600">
             Salon OS monitors customer visit frequencies automatically. When a client becomes inactive, personalized WhatsApp campaigns trigger instantly to bring them back.
           </p>
         </div>
@@ -30,15 +30,15 @@ export const MarketingRetention: React.FC<MarketingRetentionProps> = ({ onOpenDe
         <div className="mt-14 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Step 1: Inactive Trigger */}
-          <div className="glass-card p-6 rounded-2xl border border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm">
+          <div className="glass-card p-6 rounded-2xl border border-slate-800 theme-light:border-slate-200 space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/20 theme-light:bg-amber-100 text-amber-400 theme-light:text-amber-800 flex items-center justify-center font-bold text-sm">
               01
             </div>
-            <h3 className="text-base font-bold text-white font-heading">Client Passes Rebook Window</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h3 className="text-base font-bold text-white theme-light:text-slate-900 font-heading">Client Passes Rebook Window</h3>
+            <p className="text-xs text-slate-400 theme-light:text-slate-600 leading-relaxed">
               System identifies that Ananya hasn't booked her regular 30-day Hair Spa in 45 days.
             </p>
-            <div className="p-2.5 rounded-lg bg-amber-950/40 border border-amber-800/40 text-[11px] text-amber-300 font-mono">
+            <div className="p-2.5 rounded-lg bg-amber-950/40 theme-light:bg-amber-50 border border-amber-800/40 theme-light:border-amber-200 text-[11px] text-amber-300 theme-light:text-amber-900 font-mono font-bold">
               STATUS: Inactive (Risk of Churn)
             </div>
           </div>

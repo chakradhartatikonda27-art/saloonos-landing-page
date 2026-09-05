@@ -22,49 +22,49 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ onOpenDemo }) => {
   };
 
   return (
-    <section id="ai-assistant" className="py-20 md:py-28 bg-[#090D16] border-y border-slate-800 relative">
+    <section id="ai-assistant" className="py-20 md:py-28 bg-[#090D16] theme-light:bg-slate-50 border-y border-slate-800 theme-light:border-slate-200 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-semibold shadow-lg shadow-purple-950/50">
-            <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/80 theme-light:bg-purple-50 border border-purple-500/30 text-purple-300 theme-light:text-purple-700 text-xs font-semibold shadow-lg shadow-purple-950/50">
+            <Sparkles className="w-3.5 h-3.5 text-purple-400 theme-light:text-purple-600 animate-pulse" />
             <span>BUILT-IN BUSINESS INTELLIGENCE</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white theme-light:text-slate-900 tracking-tight">
             Ask Your Salon. <br />
             <span className="text-gradient-purple">Get Instant Answers.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-base sm:text-lg text-slate-300 theme-light:text-slate-600">
             Salon OS AI analyzes raw operational data, identifies revenue leakage, and executes corrective campaigns with one click.
           </p>
         </div>
 
         {/* Conversational AI Visual Workspace */}
-        <div className="mt-14 max-w-4xl mx-auto glass-card rounded-2xl p-6 md:p-8 border border-purple-500/40 relative shadow-2xl space-y-6">
+        <div className="mt-14 max-w-4xl mx-auto glass-card rounded-2xl p-6 md:p-8 border border-purple-500/40 theme-light:border-purple-200 relative shadow-2xl space-y-6">
           
           {/* Header Bar */}
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div className="flex items-center justify-between border-b border-slate-800 theme-light:border-slate-200 pb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-600/30 border border-purple-500/40 flex items-center justify-center text-purple-300">
+              <div className="w-10 h-10 rounded-xl bg-purple-600/30 theme-light:bg-purple-100 border border-purple-500/40 theme-light:border-purple-300 flex items-center justify-center text-purple-300 theme-light:text-purple-700">
                 <Bot className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-white font-heading">Salon OS AI Business Co-Pilot</h3>
-                <div className="text-xs text-slate-400">Connected to Live Financials, Queue, CRM & Inventory</div>
+                <h3 className="text-base font-bold text-white theme-light:text-slate-900 font-heading">Salon OS AI Business Co-Pilot</h3>
+                <div className="text-xs text-slate-400 theme-light:text-slate-500">Connected to Live Financials, Queue, CRM & Inventory</div>
               </div>
             </div>
-            <span className="px-3 py-1 text-[11px] font-bold text-purple-300 bg-purple-950 border border-purple-800 rounded-full flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-purple-400 animate-ping" />
+            <span className="px-3 py-1 text-[11px] font-bold text-purple-300 theme-light:text-purple-800 bg-purple-950 theme-light:bg-purple-100 border border-purple-800 theme-light:border-purple-300 rounded-full flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-purple-400 theme-light:bg-purple-600 animate-ping" />
               BI ENGINE READY
             </span>
           </div>
 
           {/* Quick Preset Prompt Pills */}
           <div className="space-y-2">
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Try Asking:</div>
+            <div className="text-xs font-semibold text-slate-400 theme-light:text-slate-500 uppercase tracking-wider">Try Asking:</div>
             <div className="flex flex-wrap gap-2">
               {AI_PRESET_PROMPTS.map((p, idx) => (
                 <button
@@ -73,7 +73,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ onOpenDemo }) => {
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     activePromptIndex === idx
                       ? 'bg-purple-600 text-white font-bold shadow-md'
-                      : 'bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700'
+                      : 'bg-slate-900 theme-light:bg-slate-100 border border-slate-800 theme-light:border-slate-300 text-slate-300 theme-light:text-slate-700 hover:border-slate-700 theme-light:hover:border-slate-400'
                   }`}
                 >
                   "{p.prompt}"
@@ -83,14 +83,14 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ onOpenDemo }) => {
           </div>
 
           {/* Conversational Dialogue Thread */}
-          <div className="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-5 min-h-[200px]">
+          <div className="p-5 rounded-xl bg-slate-900/90 theme-light:bg-slate-100 border border-slate-800 theme-light:border-slate-200 space-y-5 min-h-[200px]">
             
             {/* User Question */}
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-slate-800 text-slate-200 font-bold text-xs flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 rounded-full bg-slate-800 theme-light:bg-slate-300 text-slate-200 theme-light:text-slate-800 font-bold text-xs flex items-center justify-center shrink-0">
                 YOU
               </div>
-              <div className="p-3.5 rounded-xl bg-slate-800 text-xs text-white font-semibold">
+              <div className="p-3.5 rounded-xl bg-slate-800 theme-light:bg-white border border-transparent theme-light:border-slate-300 text-xs text-white theme-light:text-slate-900 font-semibold shadow-sm">
                 "{currentPreset.prompt}"
               </div>
             </div>
@@ -100,20 +100,20 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ onOpenDemo }) => {
               <div className="w-8 h-8 rounded-full bg-purple-600 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-lg shadow-purple-600/30">
                 AI
               </div>
-              <div className="p-4 rounded-xl bg-purple-950/40 border border-purple-800/50 text-xs text-slate-200 space-y-3 w-full">
+              <div className="p-4 rounded-xl bg-purple-950/40 theme-light:bg-purple-50 border border-purple-800/50 theme-light:border-purple-200 text-xs text-slate-200 theme-light:text-slate-900 space-y-3 w-full">
                 {isTyping ? (
-                  <div className="flex items-center gap-2 text-slate-400 font-mono italic">
-                    <RefreshCw className="w-4 h-4 animate-spin text-purple-400" />
+                  <div className="flex items-center gap-2 text-slate-400 theme-light:text-slate-600 font-mono italic">
+                    <RefreshCw className="w-4 h-4 animate-spin text-purple-400 theme-light:text-purple-600" />
                     Analyzing salon metrics across branches...
                   </div>
                 ) : (
                   <>
-                    <p className="leading-relaxed text-slate-100 font-medium">
+                    <p className="leading-relaxed text-slate-100 theme-light:text-slate-900 font-medium">
                       {currentPreset.answer}
                     </p>
 
-                    <div className="pt-3 border-t border-purple-900/60 flex flex-wrap items-center justify-between gap-3">
-                      <span className="text-[11px] text-purple-300 font-semibold">
+                    <div className="pt-3 border-t border-purple-900/60 theme-light:border-purple-200 flex flex-wrap items-center justify-between gap-3">
+                      <span className="text-[11px] text-purple-300 theme-light:text-purple-800 font-bold">
                         Recommended Action Identified
                       </span>
                       <button
@@ -137,7 +137,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({ onOpenDemo }) => {
               type="text"
               readOnly
               value={currentPreset.prompt}
-              className="flex-1 px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 focus:outline-none"
+              className="flex-1 px-4 py-3 rounded-xl bg-slate-900 theme-light:bg-slate-100 border border-slate-800 theme-light:border-slate-300 text-xs text-slate-300 theme-light:text-slate-800 focus:outline-none"
             />
             <button
               onClick={() => onOpenDemo('Ask AI Custom Query')}

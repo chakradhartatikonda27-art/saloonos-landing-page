@@ -7,12 +7,12 @@ interface CustomerCRMProps {
 
 export const CustomerCRM: React.FC<CustomerCRMProps> = ({ onOpenDemo }) => {
   return (
-    <section className="py-20 md:py-28 relative">
+    <section className="py-20 md:py-28 bg-[#070A11] theme-light:bg-slate-50 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-950/60 theme-light:bg-pink-50 border border-pink-500/30 text-pink-400 theme-light:text-pink-700 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-950/80 theme-light:bg-pink-50 border border-pink-500/30 text-pink-400 theme-light:text-pink-700 text-xs font-semibold">
             <span>CLIENT MEMORY BANK</span>
           </div>
 
