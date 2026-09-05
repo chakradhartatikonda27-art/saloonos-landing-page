@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salon OS — The AI Operating System for Salons, Beauty Parlours & Makeup Artists</title>
+<meta name="description" content="Salon OS connects bookings, queue, staff, billing, payments, customers, inventory, marketing and AI-powered analytics into one platform — built for salons, beauty parlours and makeup artists.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-strong:#1c0f19;
+    --plum-950:#faf6f0;
+    --plum-900:#ffffff;
+    --plum-800:#f2e7d8;
+    --plum-700:#e9d8bf;
+    --plum-600:#dcc39c;
+    --gold:#a8763a;
+    --gold-bright:#8a6329;
+    --cream:#2b1625;
+    --cream-dim:#5f4a58;
+    --mute:#8a7482;
+    --line:rgba(43,22,37,0.12);
+    --good:#3f7a45;
+    --radius-s:6px;
+    --radius-m:14px;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--plum-950);
+    color:var(--cream);
+    font-family:var(--font-sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  section{padding:112px 0;border-top:1px solid var(--line);}
+  section:first-of-type{border-top:none;}
+  h1,h2,h3{margin:0;font-weight:700;letter-spacing:-0.01em;}
+  h2{font-size:clamp(28px,4vw,42px);max-width:16ch;}
+  p{color:var(--cream-dim);margin:0;}
+  .eyebrow{color:var(--gold);font-size:14px;font-weight:600;margin-bottom:14px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;border-radius:var(--radius-s);
+    font-weight:600;font-size:15px;text-decoration:none;
+    border:1px solid transparent;cursor:pointer;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn-gold{background:var(--gold);color:#fff;}
+  .btn-gold:hover{background:var(--gold-bright);}
+  .btn-ghost{border-color:var(--line);color:var(--cream);background:transparent;}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+  .btn:active{transform:scale(0.98);}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,246,240,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:padding .2s ease;
+  }
+  .navbar{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:1180px;margin:0 auto;}
+  .logo{font-weight:800;font-size:19px;letter-spacing:-0.02em;display:flex;align-items:center;gap:9px;}
+  .logo-mark{width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,var(--gold),var(--gold-bright));flex-shrink:0;}
+  .nav-links{display:flex;gap:32px;font-size:15px;color:var(--cream-dim);}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-right{display:flex;align-items:center;gap:18px;font-size:15px;}
+  .nav-cta{display:flex;align-items:center;gap:16px;}
+  .hamburger{display:none;background:none;border:none;color:var(--cream);font-size:22px;cursor:pointer;}
+  
+  /* Mobile drawer */
+  .mobile-menu{
+    display:none;
+    position:fixed;
+    top:65px;
+    left:0;
+    right:0;
+    background:var(--plum-950);
+    border-bottom:1px solid var(--line);
+    padding:20px 28px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    z-index:49;
+    flex-direction:column;
+    gap:16px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:16px;font-weight:600;color:var(--cream);text-decoration:none;}
+  .mobile-menu a:hover{color:var(--gold);}
+
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .nav-right a.login{display:none;}
+    .hamburger{display:block;}
+  }
+
+  /* HERO */
+  .hero{padding-top:88px;padding-bottom:80px;border-top:none;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;text-align:center;}
+  .hero h1{font-size:clamp(36px,6vw,64px);line-height:1.05;max-width:16ch;margin:0 auto;}
+  .hero p.lead{font-size:19px;max-width:52ch;margin:22px auto 0;}
+  .hero-ctas{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap;}
+  .hero-micro{margin-top:16px;font-size:13px;color:var(--mute);}
+
+  /* product visualization */
+  .stage{
+    margin:64px auto 0;max-width:960px;position:relative;height:440px;
+  }
+  .stage-card{
+    position:absolute;background:var(--plum-800);border:1px solid var(--line);
+    border-radius:var(--radius-m);box-shadow:0 24px 48px -18px rgba(43,22,37,0.22);
+    padding:18px;
+  }
+  .stage-main{
+    width:520px;left:50%;top:10px;transform:translateX(-50%);
+    z-index:5;padding:22px;
+  }
+  .stage-kpi-row{display:flex;gap:12px;margin-bottom:14px;}
+  .kpi{flex:1;background:var(--plum-700);border-radius:var(--radius-s);padding:12px;}
+  .kpi .num{font-family:var(--font-mono);font-size:19px;color:var(--gold-bright);font-weight:600;}
+  .kpi .lbl{font-size:11px;color:var(--mute);margin-top:2px;}
+  .bar-row{display:flex;align-items:flex-end;gap:6px;height:60px;margin-top:10px;}
+  .bar{flex:1;background:linear-gradient(180deg,var(--gold-bright),var(--gold));border-radius:3px 3px 0 0;opacity:0.85;}
+
+  .float-card{width:220px;}
+  .fc1{left:0;top:60px;z-index:3;animation:float1 7s ease-in-out infinite;}
+  .fc2{right:0;top:40px;z-index:3;animation:float2 8s ease-in-out infinite;}
+  .fc3{left:20px;bottom:0;z-index:2;animation:float1 9s ease-in-out infinite reverse;}
+  .fc4{right:10px;bottom:10px;z-index:2;animation:float2 6.5s ease-in-out infinite reverse;}
+  @keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  @keyframes float2{0%,100%{transform:translateY(0);}50%{transform:translateY(10px);}}
+  .fc-title{font-size:12px;color:var(--mute);margin-bottom:8px;font-weight:600;}
+  .fc-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--line);}
+  .fc-row:last-child{border-bottom:none;}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--good);display:inline-block;margin-right:6px;}
+  @media (max-width:820px){ .stage{transform:scale(0.68);height:300px;} }
+
+  /* TRUST STRIP */
+  .trust-strip{padding:36px 0;border-top:1px solid var(--line);}
+  .trust-inner{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;color:var(--mute);font-size:14px;}
+  .trust-inner span{white-space:nowrap;}
+  .trust-label{color:var(--cream-dim);font-size:14px;margin-bottom:18px;text-align:center;}
+
+  /* PROBLEM */
+  .problem-head{text-align:center;max-width:640px;margin:0 auto 56px;}
+  .problem-head h2{margin:0 auto;}
+  .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-m);overflow:hidden;}
+  .problem-item{background:var(--plum-950);padding:28px;}
+  .problem-item h3{font-size:17px;margin-bottom:8px;}
+  .problem-item p{font-size:14.5px;}
+  .transition-line{text-align:center;margin-top:48px;font-size:20px;color:var(--gold-bright);font-weight:600;}
+  @media (max-width:800px){.problem-grid{grid-template-columns:1fr;}}
+
+  /* WORKFLOW */
+  .workflow-track{display:flex;gap:0;overflow-x:auto;padding-bottom:12px;margin-top:48px;scrollbar-width:thin;}
+  .wf-step{min-width:150px;flex:1;padding:20px 18px 20px 0;position:relative;}
+  .wf-step:not(:last-child)::after{content:"";position:absolute;right:0;top:26px;width:14px;height:1px;background:var(--gold);opacity:.5;}
+  .wf-num{font-family:var(--font-mono);color:var(--gold);font-size:13px;}
+  .wf-step h4{font-size:15px;margin:10px 0 6px;}
+  .wf-step p{font-size:13px;}
+
+  /* MODULES */
+  .module-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-m);overflow:hidden;margin-top:52px;}
+  .module{background:var(--plum-950);padding:26px 22px;transition:background .15s ease;}
+  .module:hover{background:var(--plum-800);}
+  .module h4{font-size:15.5px;margin-bottom:6px;}
+  .module p{font-size:13.5px;}
+  @media (max-width:960px){.module-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.module-grid{grid-template-columns:1fr;}}
+
+  /* ROLE SWITCHER */
+  .role-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:44px 0 0;border-bottom:1px solid var(--line);}
+  .role-tab{background:none;border:none;color:var(--mute);font-family:var(--font-sans);font-size:15px;font-weight:600;padding:12px 4px;margin-right:26px;cursor:pointer;border-bottom:2px solid transparent;}
+  .role-tab.active{color:var(--gold-bright);border-bottom-color:var(--gold);}
+  .role-panel{display:none;padding-top:40px;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
+  .role-panel.active{display:grid;}
+  @media (max-width:800px){.role-panel{grid-template-columns:1fr;}}
+  .role-panel h3{font-size:24px;margin-bottom:14px;max-width:16ch;}
+  .role-list{list-style:none;margin:20px 0 26px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;}
+  .role-list li{font-size:14.5px;color:var(--cream-dim);padding-left:16px;position:relative;}
+  .role-list li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--gold);border-radius:1px;}
+  .role-visual{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:22px;font-size:13.5px;}
+  .role-visual .row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);}
+  .role-visual .row:last-child{border-bottom:none;}
+  .role-visual .row span:last-child{color:var(--gold-bright);font-family:var(--font-mono);}
+
+  /* QUEUE */
+  .queue-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center;margin-top:48px;}
+  @media (max-width:800px){.queue-layout{grid-template-columns:1fr;}}
+  .token-card{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:32px;text-align:center;}
+  .token-num{font-family:var(--font-mono);font-size:42px;color:var(--gold-bright);font-weight:600;letter-spacing:1px;}
+  .token-sub{color:var(--mute);font-size:14px;margin-top:6px;}
+  .token-wait{margin-top:18px;font-size:15px;}
+  .token-wait b{color:var(--cream);}
+  .queue-dash{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:8px;}
+  .queue-dash .row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;font-size:14px;border-bottom:1px solid var(--line);}
+  .queue-dash .row:last-child{border-bottom:none;}
+  .badge{font-size:11.5px;padding:3px 9px;border-radius:20px;font-weight:600;}
+  .badge-busy{background:rgba(201,161,91,0.15);color:var(--gold-bright);}
+  .badge-free{background:rgba(127,174,130,0.15);color:var(--good);}
+
+  /* BILLING FLOW */
+  .flow-strip{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:52px;flex-wrap:wrap;}
+  .flow-node{flex:1;min-width:110px;text-align:center;font-size:13.5px;color:var(--cream-dim);}
+  .flow-node .fnum{width:34px;height:34px;border-radius:50%;background:var(--plum-700);border:1px solid var(--gold);color:var(--gold-bright);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-family:var(--font-mono);font-size:13px;}
+  .flow-arrow{color:var(--mute);font-size:16px;}
+  .pay-methods{display:flex;gap:10px;justify-content:center;margin-top:36px;flex-wrap:wrap;}
+  .pay-chip{border:1px solid var(--line);border-radius:20px;padding:7px 16px;font-size:13px;color:var(--cream-dim);}
+
+  /* AI SECTION */
+  .ai-chat{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;margin-top:48px;max-width:760px;}
+  .msg{margin-bottom:16px;max-width:80%;font-size:14.5px;line-height:1.55;}
+  .msg-owner{margin-left:auto;background:var(--plum-700);padding:12px 16px;border-radius:12px 12px 2px 12px;}
+  .msg-ai{background:var(--plum-900);border:1px solid var(--line);padding:12px 16px;border-radius:12px 12px 12px 2px;color:var(--cream-dim);}
+  .ai-actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
+  .ai-chip{font-size:12.5px;border:1px solid var(--gold);color:var(--gold-bright);padding:6px 12px;border-radius:20px;background:transparent;cursor:pointer;font-family:var(--font-sans);transition:background .15s ease, color .15s ease;}
+  .ai-chip:hover{background:var(--gold);color:#fff;}
+
+  /* GLOBAL */
+  .global-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-m);overflow:hidden;margin-top:48px;}
+  .global-item{background:var(--plum-950);padding:24px;}
+  .global-item h4{font-size:15px;margin-bottom:10px;}
+  .global-item ul{margin:0;padding-left:16px;color:var(--cream-dim);font-size:13px;line-height:1.7;}
+  @media (max-width:900px){.global-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.global-grid{grid-template-columns:1fr;}}
+
+  /* PRICING */
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+  @media (max-width:900px){.price-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.price-grid{grid-template-columns:1fr;}}
+  .price-card{border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;background:var(--plum-900);display:flex;flex-direction:column;justify-content:space-between;}
+  .price-card.feat{border-color:var(--gold);background:var(--plum-800);}
+  .price-card h4{font-size:16px;margin-bottom:4px;}
+  .price-card .sub{font-size:13px;color:var(--mute);margin-bottom:18px;}
+  .price-card ul{list-style:none;padding:0;margin:18px 0 22px;font-size:13.5px;color:var(--cream-dim);}
+  .price-card li{padding:6px 0;border-bottom:1px solid var(--line);}
+  .price-card li:last-child{border-bottom:none;}
+  .price-cta{display:block;text-align:center;width:100%;}
+
+  /* TESTIMONIALS */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+  @media (max-width:860px){.testi-grid{grid-template-columns:1fr;}}
+  .testi-card{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;display:flex;flex-direction:column;gap:16px;}
+  .testi-stars{color:var(--gold);letter-spacing:2px;font-size:15px;}
+  .testi-quote{font-size:15px;color:var(--cream);line-height:1.6;flex-grow:1;}
+  .testi-attr{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--line);}
+  .testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--plum-700);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:13px;color:var(--gold-bright);flex-shrink:0;}
+  .testi-name{font-size:13.5px;font-weight:600;}
+  .testi-role{font-size:12.5px;color:var(--mute);}
+  .testi-note{margin-top:28px;font-size:13px;color:var(--mute);text-align:center;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%;text-align:left;background:none;border:none;color:var(--cream);font-family:var(--font-sans);font-size:16px;font-weight:600;padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;}
+  .faq-q .plus{color:var(--gold);font-size:20px;transition:transform .2s ease;flex-shrink:0;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-a p{padding-bottom:20px;font-size:14.5px;}
+
+  /* FINAL CTA */
+  .final-cta{text-align:center;background:linear-gradient(180deg,var(--plum-900),var(--plum-950));}
+  .final-cta h2{margin:0 auto;}
+  .final-cta p{max-width:48ch;margin:18px auto 0;}
+  .final-cta .hero-ctas{margin-top:32px;}
+
+  footer{padding:64px 0 32px;border-top:1px solid var(--line);}
+  .foot-grid{display:grid;grid-template-columns:2fr repeat(5,1fr);gap:32px;}
+  @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr 1fr;}}
+  @media (max-width:560px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-col h5{font-size:13px;color:var(--mute);margin-bottom:14px;font-weight:600;}
+  .foot-col ul{list-style:none;padding:0;margin:0;}
+  .foot-col li{margin-bottom:10px;font-size:14px;}
+  .foot-col a:hover{color:var(--gold);}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);flex-wrap:wrap;gap:12px;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  @media (max-width:800px){.two-col{grid-template-columns:1fr;}}
+
+  /* MIS / WHATSAPP REPORT CARD */
+  .mis-card{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;max-width:420px;}
+  .mis-head{display:flex;justify-content:space-between;font-size:12.5px;color:var(--mute);margin-bottom:14px;}
+  .mis-row{display:flex;justify-content:space-between;font-size:14px;padding:7px 0;border-bottom:1px solid var(--line);}
+  .mis-row:last-of-type{border-bottom:none;}
+  .mis-row span:last-child{font-family:var(--font-mono);color:var(--cream);}
+  .mis-insight{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--cream-dim);}
+  .mis-insight b{color:var(--gold-bright);}
+  .wa-sent{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--good);margin-top:14px;}
+
+  /* AI QUESTION CHIPS */
+  .ai-questions{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 4px;}
+  .ai-q-chip{border:1px solid var(--line);background:transparent;color:var(--cream-dim);font-size:13px;padding:8px 14px;border-radius:20px;cursor:pointer;font-family:var(--font-sans);transition:all .15s ease;}
+  .ai-q-chip.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(168,118,58,0.08);}
+
+  /* ONE-CLICK AI ACTIONS */
+  .action-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-m);overflow:hidden;margin-top:48px;}
+  .action-item{background:var(--plum-950);padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;}
+  .action-item p{font-size:14.5px;color:var(--cream);margin:0;}
+  .action-item .btn{align-self:flex-start;}
+  @media (max-width:700px){.action-grid{grid-template-columns:1fr;}}
+
+  /* CUSTOMER HEALTH */
+  .health-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;}
+  .health-chip{flex:1;min-width:130px;border:1px solid var(--line);border-radius:var(--radius-s);padding:16px;text-align:center;}
+  .health-chip .n{font-family:var(--font-mono);font-size:21px;color:var(--gold-bright);}
+  .health-chip .l{font-size:12px;color:var(--mute);margin-top:4px;}
+  .health-chip.risk{border-color:var(--gold);}
+
+  /* BEFORE / AFTER */
+  .ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:center;margin-top:48px;}
+  @media (max-width:760px){.ba-grid{grid-template-columns:1fr;}}
+  .ba-col{background:var(--plum-800);border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;}
+  .ba-col h4{font-size:13px;color:var(--mute);margin-bottom:14px;font-weight:600;}
+  .ba-col ul{list-style:none;margin:0;padding:0;font-size:14px;}
+  .ba-col li{padding:7px 0;border-bottom:1px solid var(--line);color:var(--cream-dim);}
+  .ba-col li:last-child{border-bottom:none;}
+  .ba-col.after li{color:var(--cream);}
+  .ba-arrow{font-size:22px;color:var(--gold);text-align:center;}
+
+  /* BUSINESS TYPE IMAGE CARDS */
+  .biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+  @media (max-width:760px){.biz-grid{grid-template-columns:1fr;}}
+  .biz-card{position:relative;border-radius:var(--radius-m);overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;background:var(--plum-800);}
+  .biz-card svg{position:absolute;inset:0;width:100%;height:100%;}
+  .biz-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .biz-label{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(180deg,rgba(28,15,25,0) 0%,rgba(28,15,25,0.7) 100%);}
+  .biz-label h4{font-size:16px;margin:0;color:#fff;}
+  .biz-label p{font-size:12.5px;color:rgba(255,255,255,0.88);margin-top:4px;}
+
+  /* TOAST NOTIFICATION */
+  .toast{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    background:var(--ink-strong);
+    color:#fff;
+    padding:14px 20px;
+    border-radius:var(--radius-m);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    z-index:999;
+    opacity:0;
+    transform:translateY(20px);
+    transition:all .3s ease;
+    pointer-events:none;
+  }
+  .toast.show{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logo"><span class="logo-mark"></span>Salon OS</div>
+    <nav class="nav-links">
+      <a href="#ai-brain">AI</a>
+      <a href="#platform">Product</a>
+      <a href="#roles">Solutions</a>
+      <a href="#modules">Features</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <div class="nav-right">
+      <a class="login" href="javascript:void(0)" onclick="showToast('Salon OS Login portal ready')">Login</a>
+      <a class="btn btn-gold" href="#pricing" style="padding:9px 18px;font-size:14px;">Start Free</a>
+      <button class="hamburger" aria-label="Menu" id="hamburger-btn">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#ai-brain" onclick="closeMobileMenu()">AI</a>
+    <a href="#platform" onclick="closeMobileMenu()">Product</a>
+    <a href="#roles" onclick="closeMobileMenu()">Solutions</a>
+    <a href="#modules" onclick="closeMobileMenu()">Features</a>
+    <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+    <a href="javascript:void(0)" onclick="showToast('Salon OS Login portal ready'); closeMobileMenu()">Login</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Your salon doesn't just need software.<br>It needs intelligence.</h1>
+      <p class="lead">Built for salons, beauty parlours and makeup artists. Salon OS manages your bookings, customers, staff, billing and inventory — while AI continuously analyzes your business, sends you daily insights and tells you what to do next.</p>
+      <div class="hero-ctas">
+        <a href="#pricing" class="btn btn-gold">Start Free</a>
+        <a href="#ai-brain" class="btn btn-ghost">See AI in Action</a>
+      </div>
+      <div class="hero-micro">You run your salon. Salon OS watches the numbers.</div>
+    </div>
+
+    <div class="stage" aria-hidden="true">
+      <div class="stage-card stage-main">
+        <div class="fc-title">OWNER DASHBOARD</div>
+        <div class="stage-kpi-row">
+          <div class="kpi"><div class="num">₹42,850</div><div class="lbl">Today's Revenue</div></div>
+          <div class="kpi"><div class="num">128</div><div class="lbl">Customers</div></div>
+          <div class="kpi"><div class="num">₹1,245</div><div class="lbl">Avg. Bill</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar" style="height:40%"></div><div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:50%"></div><div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:60%"></div><div class="bar" style="height:90%"></div>
+          <div class="bar" style="height:70%"></div>
+        </div>
+      </div>
+      <div class="stage-card float-card fc1">
+        <div class="fc-title">LIVE QUEUE</div>
+        <div class="fc-row"><span>Token A27</span><span>18 min</span></div>
+        <div class="fc-row"><span>Token A28</span><span>26 min</span></div>
+      </div>
+      <div class="stage-card float-card fc2">
+        <div class="fc-title">STAFF</div>
+        <div class="fc-row"><span><span class="dot"></span>Divya</span><span>Free</span></div>
+        <div class="fc-row"><span><span class="dot" style="background:var(--gold)"></span>Ramesh</span><span>Busy</span></div>
+      </div>
+      <div class="stage-card float-card fc3">
+        <div class="fc-title">AI ALERT</div>
+        <div class="fc-row"><span>Revenue</span><span>↓ 11%</span></div>
+        <div class="fc-row"><span>Hair Colour</span><span>↓ 22%</span></div>
+        <div class="fc-row"><span>17 VIPs inactive</span><span>→</span></div>
+      </div>
+      <div class="stage-card float-card fc4">
+        <div class="fc-title">DAILY MIS · SENT ✓</div>
+        <div class="fc-row"><span>Revenue</span><span>₹42,850</span></div>
+        <div class="fc-row"><span>Net collection</span><span>₹38,920</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="wrap">
+    <div class="trust-label">Built for salons. Ready for the world.</div>
+    <div class="trust-inner">
+      <span>🇮🇳 India</span><span>🇺🇸 USA</span><span>🇬🇧 UK</span><span>🇪🇺 Europe</span><span>🌍 Africa</span><span>🌎 Global</span>
+    </div>
+  </div>
+</div>
+
+<section id="who-its-for">
+  <div class="wrap">
+    <div class="eyebrow">Who it's for</div>
+    <h2>Built for every kind of beauty business.</h2>
+    <p style="margin-top:16px;max-width:60ch;">Salon OS isn't just for hair salons. The same operating system runs beauty parlours, makeup artists, spas and studios of any size.</p>
+    <div class="biz-grid">
+      <div class="biz-card">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <rect width="400" height="500" fill="var(--plum-800)"/>
+          <circle cx="200" cy="190" r="110" fill="none" stroke="var(--gold)" stroke-width="2" opacity="0.5"/>
+          <ellipse cx="200" cy="170" rx="70" ry="85" fill="none" stroke="var(--cream)" stroke-width="2.5"/>
+          <path d="M150 250 Q200 220 250 250 L260 340 Q200 365 140 340 Z" fill="none" stroke="var(--cream)" stroke-width="2.5"/>
+          <line x1="200" y1="365" x2="200" y2="420" stroke="var(--gold)" stroke-width="3"/>
+          <rect x="150" y="420" width="100" height="10" rx="5" fill="var(--gold)"/>
+          <circle cx="150" cy="130" r="4" fill="var(--gold-bright)"/>
+          <circle cx="250" cy="150" r="3" fill="var(--gold-bright)"/>
+        </svg>
+        <img src="https://images.unsplash.com/photo-1633681117690-262b94a01378?auto=format&fit=crop&w=700&q=70" alt="Modern hair salon interior" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+        <div class="biz-label"><h4>Salons</h4><p>Hair salons, barbershops and chains</p></div>
+      </div>
+      <div class="biz-card">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <rect width="400" height="500" fill="var(--plum-700)"/>
+          <ellipse cx="200" cy="220" rx="90" ry="110" fill="none" stroke="var(--cream)" stroke-width="2.5"/>
+          <path d="M160 190 Q200 170 240 190" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+          <path d="M160 260 Q200 285 240 260" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+          <circle cx="200" cy="220" r="130" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity="0.35"/>
+          <path d="M130 350 Q200 400 270 350" fill="none" stroke="var(--gold-bright)" stroke-width="2"/>
+          <circle cx="120" cy="110" r="6" fill="var(--gold-bright)"/>
+          <circle cx="290" cy="140" r="4" fill="var(--gold-bright)"/>
+          <circle cx="80" cy="200" r="3" fill="var(--gold-bright)"/>
+        </svg>
+        <img src="https://images.unsplash.com/photo-1761718209835-c8586b7dcac0?auto=format&fit=crop&w=700&q=70" alt="Beauty parlour facial treatment" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+        <div class="biz-label"><h4>Beauty Parlours</h4><p>Facials, skincare and grooming studios</p></div>
+      </div>
+      <div class="biz-card">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <rect width="400" height="500" fill="var(--plum-800)"/>
+          <rect x="180" y="140" width="20" height="150" rx="10" fill="var(--gold)"/>
+          <path d="M170 140 Q190 100 210 140 Z" fill="var(--gold-bright)"/>
+          <circle cx="270" cy="330" r="42" fill="none" stroke="var(--cream)" stroke-width="2.5"/>
+          <rect x="255" y="288" width="30" height="26" rx="4" fill="none" stroke="var(--cream)" stroke-width="2.5"/>
+          <circle cx="130" cy="350" r="30" fill="none" stroke="var(--gold-bright)" stroke-width="2.5"/>
+          <circle cx="130" cy="350" r="12" fill="var(--gold-bright)" opacity="0.5"/>
+          <line x1="60" y1="410" x2="340" y2="410" stroke="var(--line)" stroke-width="1"/>
+        </svg>
+        <img src="https://images.unsplash.com/photo-1709477542170-f11ee7d471a0?auto=format&fit=crop&w=700&q=70" alt="Makeup artist applying makeup to a client" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+        <div class="biz-label"><h4>Makeup Artists</h4><p>Bridal, freelance and studio artists</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="wow">
+  <div class="wrap two-col">
+    <div>
+      <div class="eyebrow">What if your salon reported to you?</div>
+      <h2>Every day, Salon OS turns your operations into a business report — delivered straight to WhatsApp.</h2>
+      <p style="margin-top:16px;max-width:48ch;">No need to open a dashboard every night to know how your salon performed.</p>
+    </div>
+    <div class="mis-card">
+      <div class="mis-head"><span>SALON OS · DAILY MIS</span><span>Today, 9:12 PM</span></div>
+      <div class="mis-row"><span>💰 Revenue</span><span>₹42,850</span></div>
+      <div class="mis-row"><span>👥 Customers</span><span>86</span></div>
+      <div class="mis-row"><span>📅 Appointments</span><span>61</span></div>
+      <div class="mis-row"><span>🚶 Walk-ins</span><span>25</span></div>
+      <div class="mis-row"><span>💳 Collections</span><span>₹40,920</span></div>
+      <div class="mis-row"><span>⚠️ Wait-time alerts</span><span>8</span></div>
+      <div class="mis-row"><span>📦 Low-stock items</span><span>3</span></div>
+      <div class="mis-insight"><b>AI:</b> Weekday Hair Colour bookings are down 22%. Consider a targeted weekday offer for previous colour customers.</div>
+      <div class="wa-sent">✓ Delivered to WhatsApp</div>
+    </div>
+  </div>
+</section>
+
+<section id="mis">
+  <div class="wrap">
+    <div class="eyebrow">Flagship feature</div>
+    <h2>Your daily MIS. Delivered automatically.</h2>
+    <p style="margin-top:16px;max-width:60ch;">You don't need to check the dashboard every night — Salon OS compiles the day's business performance into one report, across every part of the operation.</p>
+    <div class="module-grid">
+      <div class="module"><h4>Sales</h4><p>Gross sales, net sales, average bill, payment split by cash, UPI and card.</p></div>
+      <div class="module"><h4>Expenses</h4><p>Daily expenses, product purchases and operating costs.</p></div>
+      <div class="module"><h4>Staff</h4><p>Attendance, hours, services completed, revenue and commission per stylist.</p></div>
+      <div class="module"><h4>Customers</h4><p>New, returning, VIP, walk-ins, cancellations and no-shows.</p></div>
+      <div class="module"><h4>Operations</h4><p>Queue volume, average wait time, delayed appointments.</p></div>
+      <div class="module"><h4>Inventory</h4><p>Low-stock products, consumption and purchase requirements.</p></div>
+      <div class="module"><h4>Business</h4><p>Revenue, cost, estimated profit and margin, in one line.</p></div>
+      <div class="module"><h4>Delivery</h4><p>Sent to the dashboard and, where configured, straight to WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="problem-head">
+      <div class="eyebrow">Why salons need this</div>
+      <h2>Your salon shouldn't run on WhatsApp, spreadsheets and memory.</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-item"><h3>Too many missed appointments</h3><p>Bookings scattered across phone calls, WhatsApp and messages.</p></div>
+      <div class="problem-item"><h3>Customers waiting too long</h3><p>No real-time queue visibility for walk-ins or bookings.</p></div>
+      <div class="problem-item"><h3>Billing takes too long</h3><p>Manual calculations and disconnected payment tracking.</p></div>
+      <div class="problem-item"><h3>Staff management is messy</h3><p>No clear visibility into schedules, attendance and performance.</p></div>
+      <div class="problem-item"><h3>Customers disappear</h3><p>No automated retention or rebooking after a visit.</p></div>
+      <div class="problem-item"><h3>Owners lack visibility</h3><p>Revenue, expenses, inventory and performance sit in different tools.</p></div>
+    </div>
+    <div class="transition-line">Salon OS brings it all together.</div>
+  </div>
+</section>
+
+<section id="platform">
+  <div class="wrap">
+    <div class="eyebrow">The complete flow</div>
+    <h2>From first booking to final payment.</h2>
+    <div class="workflow-track">
+      <div class="wf-step"><div class="wf-num">01</div><h4>Discover</h4><p>Customers find your salon online.</p></div>
+      <div class="wf-step"><div class="wf-num">02</div><h4>Book</h4><p>Book online or staff create it instantly.</p></div>
+      <div class="wf-step"><div class="wf-num">03</div><h4>Arrive</h4><p>Check in with a token in seconds.</p></div>
+      <div class="wf-step"><div class="wf-num">04</div><h4>Queue</h4><p>Customers see their estimated wait.</p></div>
+      <div class="wf-step"><div class="wf-num">05</div><h4>Service</h4><p>Stylists see who's next and what's needed.</p></div>
+      <div class="wf-step"><div class="wf-num">06</div><h4>Bill</h4><p>Completed services flow into billing.</p></div>
+      <div class="wf-step"><div class="wf-num">07</div><h4>Pay</h4><p>Cash, card, UPI or digital payments.</p></div>
+      <div class="wf-step"><div class="wf-num">08</div><h4>Rebook</h4><p>Loyalty and reminders bring them back.</p></div>
+      <div class="wf-step"><div class="wf-num">09</div><h4>Grow</h4><p>Analytics turn visits into decisions.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="modules">
+  <div class="wrap">
+    <div class="eyebrow">One platform</div>
+    <h2>Everything your salon needs.</h2>
+    <div class="module-grid">
+      <div class="module"><h4>Appointments</h4><p>Bookings, reschedules, cancellations and no-shows.</p></div>
+      <div class="module"><h4>Live Queue</h4><p>Know who's waiting and how long they'll wait.</p></div>
+      <div class="module"><h4>Customer CRM</h4><p>Every customer, visit and preference in one place.</p></div>
+      <div class="module"><h4>POS & Billing</h4><p>Fast, accurate, tax-ready invoices.</p></div>
+      <div class="module"><h4>Payments</h4><p>Track cash, card, UPI and digital payments.</p></div>
+      <div class="module"><h4>Staff Management</h4><p>Schedules, attendance, commissions, performance.</p></div>
+      <div class="module"><h4>Inventory</h4><p>What's in stock, in use and needs ordering.</p></div>
+      <div class="module"><h4>Memberships</h4><p>Packages and prepaid membership plans.</p></div>
+      <div class="module"><h4>Loyalty</h4><p>Reward customers and drive repeat visits.</p></div>
+      <div class="module"><h4>Marketing</h4><p>Automatically reach inactive and high-value customers.</p></div>
+      <div class="module"><h4>WhatsApp</h4><p>Confirmations, reminders, invoices and campaigns.</p></div>
+      <div class="module"><h4>Analytics</h4><p>Understand salon performance at a glance.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="roles">
+  <div class="wrap">
+    <div class="eyebrow">Role-based experience</div>
+    <h2>One salon. Five powerful experiences.</h2>
+    <div class="role-tabs" role="tablist">
+      <button class="role-tab active" data-role="customer">Customer</button>
+      <button class="role-tab" data-role="reception">Receptionist</button>
+      <button class="role-tab" data-role="manager">Manager</button>
+      <button class="role-tab" data-role="stylist">Stylist</button>
+      <button class="role-tab" data-role="owner">Owner</button>
+    </div>
+
+    <div class="role-panel active" data-panel="customer">
+      <div>
+        <h3>A better experience for your customers.</h3>
+        <ul class="role-list">
+          <li>Discover services</li><li>View fixed prices</li>
+          <li>Book appointments</li><li>Get queue tokens</li>
+          <li>Track waiting time</li><li>View offers</li>
+          <li>Receive invoices</li><li>Earn loyalty points</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="showToast('Customer App Experience Loaded')" class="btn btn-ghost">Give customers a better experience</a>
+      </div>
+      <div class="role-visual">
+        <div class="row"><span>Service</span><span>Hair Spa</span></div>
+        <div class="row"><span>Token</span><span>A27</span></div>
+        <div class="row"><span>Ahead of you</span><span>2</span></div>
+        <div class="row"><span>Est. wait</span><span>18 min</span></div>
+      </div>
+    </div>
+
+    <div class="role-panel" data-panel="reception">
+      <div>
+        <h3>Make the front desk faster.</h3>
+        <ul class="role-list">
+          <li>New appointment</li><li>Walk-in token</li>
+          <li>Customer search</li><li>Check-in</li>
+          <li>Queue view</li><li>Billing & payment</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="showToast('Receptionist Desk View Activated')" class="btn btn-ghost">Less clicking. More customers served.</a>
+      </div>
+      <div class="role-visual">
+        <div class="row"><span>Walk-in</span><span>Issue token</span></div>
+        <div class="row"><span>Priya S.</span><span>Checked in</span></div>
+        <div class="row"><span>Queue length</span><span>4 waiting</span></div>
+        <div class="row"><span>Pending bills</span><span>2</span></div>
+      </div>
+    </div>
+
+    <div class="role-panel" data-panel="manager">
+      <div>
+        <h3>Know what's happening on your salon floor.</h3>
+        <ul class="role-list">
+          <li>Live appointments</li><li>Queue status</li>
+          <li>Staff availability</li><li>Delays</li>
+          <li>Attendance</li><li>Inventory alerts</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="showToast('Floor Manager Dashboard Active')" class="btn btn-ghost">Run the floor with confidence</a>
+      </div>
+      <div class="role-visual">
+        <div class="row"><span>Staff on floor</span><span>6 / 8</span></div>
+        <div class="row"><span>Delayed services</span><span>1</span></div>
+        <div class="row"><span>Low stock items</span><span>3</span></div>
+        <div class="row"><span>Today's bookings</span><span>34</span></div>
+      </div>
+    </div>
+
+    <div class="role-panel" data-panel="stylist">
+      <div>
+        <h3>Know your next customer before they sit down.</h3>
+        <ul class="role-list">
+          <li>Next customer</li><li>Service required</li>
+          <li>Customer notes</li><li>Preferences</li>
+          <li>Service timer</li><li>Commission earned</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="showToast('Stylist Mobile App Ready')" class="btn btn-ghost">Focus on the service</a>
+      </div>
+      <div class="role-visual">
+        <div class="row"><span>Next up</span><span>Anitha R.</span></div>
+        <div class="row"><span>Service</span><span>Balayage</span></div>
+        <div class="row"><span>Notes</span><span>Sensitive scalp</span></div>
+        <div class="row"><span>Commission today</span><span>₹1,120</span></div>
+      </div>
+    </div>
+
+    <div class="role-panel" data-panel="owner">
+      <div>
+        <h3>Know your business without being everywhere.</h3>
+        <ul class="role-list">
+          <li>Revenue</li><li>Profit</li>
+          <li>Customers</li><li>Staff</li>
+          <li>Branches</li><li>AI insights</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="showToast('Owner Executive View Loaded')" class="btn btn-ghost">Your entire business, at a glance</a>
+      </div>
+      <div class="role-visual">
+        <div class="row"><span>Monthly revenue</span><span>₹8.4L</span></div>
+        <div class="row"><span>Est. profit</span><span>₹2.1L</span></div>
+        <div class="row"><span>Active branches</span><span>4</span></div>
+        <div class="row"><span>AI flag</span><span>146 lapsed customers</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="queue">
+  <div class="wrap">
+    <div class="eyebrow">Live queue</div>
+    <h2>No more guessing how long customers will wait.</h2>
+    <div class="queue-layout">
+      <div class="token-card">
+        <div class="fc-title" style="text-align:left;margin-bottom:14px;">YOUR TOKEN</div>
+        <div class="token-num">A27</div>
+        <div class="token-sub">2 customers ahead</div>
+        <div class="token-wait">Estimated wait <b>18 min</b></div>
+      </div>
+      <div class="queue-dash">
+        <div class="row"><span>Divya — Stylist</span><span class="badge badge-free">Available</span></div>
+        <div class="row"><span>Ramesh — Stylist</span><span class="badge badge-busy">In service · 12 min left</span></div>
+        <div class="row"><span>Token A26 — Meera</span><span>In service</span></div>
+        <div class="row"><span>Token A27 — You</span><span>Waiting</span></div>
+        <div class="row"><span>Token A28 — Sanjay</span><span>Waiting</span></div>
+      </div>
+    </div>
+    <p style="margin-top:28px;max-width:64ch;">Salon OS calculates estimated waiting time using queue position, service duration, staff availability and current service progress.</p>
+  </div>
+</section>
+
+<section id="billing">
+  <div class="wrap">
+    <div class="eyebrow">Smart billing</div>
+    <h2>From service completion to payment in seconds.</h2>
+    <div class="flow-strip">
+      <div class="flow-node"><div class="fnum">1</div>Service completed</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="fnum">2</div>Bill generated</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="fnum">3</div>GST calculated</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="fnum">4</div>Payment collected</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="fnum">5</div>WhatsApp invoice</div>
+    </div>
+    <div class="pay-methods">
+      <span class="pay-chip">Cash</span><span class="pay-chip">Card</span><span class="pay-chip">UPI</span>
+      <span class="pay-chip">Split payment</span><span class="pay-chip">Membership wallet</span>
+    </div>
+  </div>
+</section>
+
+<section id="ai-brain">
+  <div class="wrap">
+    <div class="eyebrow">The core differentiator</div>
+    <h2>Salon OS doesn't just show you numbers. It explains them.</h2>
+    <div class="two-col" style="margin-top:48px;align-items:start;">
+      <div class="mis-card" style="max-width:none;">
+        <div class="mis-head"><span>NORMAL SOFTWARE</span></div>
+        <div class="mis-row"><span>Revenue</span><span>₹8.4L</span></div>
+        <div class="mis-insight">That's it. You're left to work out why.</div>
+      </div>
+      <div class="mis-card" style="max-width:none;border-color:var(--gold);">
+        <div class="mis-head"><span>SALON OS</span></div>
+        <div class="mis-row"><span>Revenue</span><span>₹8.4L</span></div>
+        <div class="mis-row"><span>Hair Colour</span><span>↓ 22%</span></div>
+        <div class="mis-row"><span>Walk-ins</span><span>↓ 18%</span></div>
+        <div class="mis-insight"><b>AI:</b> Your revenue decline is mainly lower weekday traffic and fewer Hair Colour bookings.</div>
+        <div style="margin-top:14px;"><button class="ai-chip" onclick="showToast('Targeting inactive colour customers...')">Target inactive colour customers</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="wrap">
+    <div class="eyebrow">AI business assistant</div>
+    <h2>Ask your salon anything.</h2>
+    <div class="ai-questions">
+      <button class="ai-q-chip active" data-q="revenue">Why is revenue down?</button>
+      <button class="ai-q-chip" data-q="staff">Which staff performed best?</button>
+      <button class="ai-q-chip" data-q="churn">Which customers are at risk?</button>
+      <button class="ai-q-chip" data-q="stock">What should I purchase this week?</button>
+    </div>
+    <div class="ai-chat">
+      <div class="msg msg-owner" id="ai-q-text">Why is revenue down?</div>
+      <div class="msg msg-ai" id="ai-a-text">
+        Revenue is down 11% compared with last month. The main drivers are an 18% drop in walk-ins, a 22% decline in Hair Colour bookings and 17 inactive VIP customers.
+        <div class="ai-actions" id="ai-a-actions">
+          <button class="ai-chip" onclick="showToast('Campaign draft created')">Launch comeback campaign</button>
+          <button class="ai-chip" onclick="showToast('Loading performance charts...')">View Hair Colour performance</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="actions">
+  <div class="wrap">
+    <div class="eyebrow">From insight to action</div>
+    <h2>Insights are useful. Actions are better.</h2>
+    <div class="action-grid">
+      <div class="action-item">
+        <p><b>Hair Colour bookings are down 22%.</b></p>
+        <button class="btn btn-ghost" onclick="showToast('WhatsApp Campaign Launched!')">Launch WhatsApp Campaign</button>
+      </div>
+      <div class="action-item">
+        <p><b>Saturday demand is expected to exceed capacity.</b></p>
+        <button class="btn btn-ghost" onclick="showToast('Staff Roster Adjusted')">Adjust Staff Schedule</button>
+      </div>
+      <div class="action-item">
+        <p><b>3 products are approaching reorder levels.</b></p>
+        <button class="btn btn-ghost" onclick="showToast('Purchase Order Created')">Create Purchase List</button>
+      </div>
+      <div class="action-item">
+        <p><b>146 customers are becoming inactive.</b></p>
+        <button class="btn btn-ghost" onclick="showToast('Comeback Offers Dispatched via WhatsApp')">Launch Comeback Campaign</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="crm-ai">
+  <div class="wrap">
+    <div class="eyebrow">Customer intelligence</div>
+    <h2>Know who's leaving before they leave.</h2>
+    <p style="margin-top:16px;max-width:60ch;">Salon OS tracks visit frequency per customer and flags who needs attention, automatically.</p>
+    <div class="health-strip">
+      <div class="health-chip"><div class="n">1,240</div><div class="l">Healthy</div></div>
+      <div class="health-chip risk"><div class="n">96</div><div class="l">At risk</div></div>
+      <div class="health-chip risk"><div class="n">17</div><div class="l">Inactive VIPs</div></div>
+      <div class="health-chip"><div class="n">312</div><div class="l">Lost (90+ days)</div></div>
+    </div>
+    <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+      <button class="btn btn-ghost" onclick="showToast('Loading customer directory...')">View Customers</button>
+      <button class="btn btn-gold" onclick="showToast('Retention campaign initialized!')">Launch Comeback Campaign</button>
+    </div>
+  </div>
+</section>
+
+<section id="marketing-ai">
+  <div class="wrap">
+    <div class="eyebrow">Automated marketing</div>
+    <h2>Don't wait for customers to come back. Give them a reason.</h2>
+    <div class="flow-strip">
+      <div class="flow-node"><div class="fnum">1</div>AI detects inactive customer</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="fnum">2</div>Creates relevant offer</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="fnum">3</div>Sends via WhatsApp</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="fnum">4</div>Customer rebooks</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="fnum">5</div>Revenue tracked</div>
+    </div>
+    <div class="mis-card" style="margin-top:36px;">
+      <div class="mis-head"><span>CAMPAIGN · GLOW20</span></div>
+      <div class="mis-insight" style="margin-top:0;padding-top:0;border-top:none;">"We miss you, Rahul. Your next Hair Spa is 20% off this week."</div>
+      <div class="mis-row" style="margin-top:14px;"><span>Sent</span><span>412</span></div>
+      <div class="mis-row"><span>Booked</span><span>58</span></div>
+      <div class="mis-row"><span>Revenue</span><span>₹71,400</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="inventory-ai">
+  <div class="wrap">
+    <div class="eyebrow">Predictive inventory</div>
+    <h2>Know what you'll need before you run out.</h2>
+    <div class="mis-card" style="margin-top:36px;">
+      <div class="mis-head"><span>ARGAN HAIR SERUM</span></div>
+      <div class="mis-row"><span>Current stock</span><span>8 units</span></div>
+      <div class="mis-row"><span>Avg. weekly use</span><span>12 units</span></div>
+      <div class="mis-row"><span>Predicted need</span><span>15 units</span></div>
+      <div class="mis-insight"><b>AI:</b> Consider ordering 7 more units before next week.</div>
+      <div style="margin-top:14px;"><button class="btn btn-ghost" onclick="showToast('Purchase Order Drafted')">Create Purchase List</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="global">
+  <div class="wrap">
+    <div class="eyebrow">Global readiness</div>
+    <h2>Built for salons everywhere.</h2>
+    <div class="global-grid">
+      <div class="global-item"><h4>India</h4><ul><li>GST-ready billing</li><li>UPI</li><li>WhatsApp</li><li>Multi-branch salons</li></ul></div>
+      <div class="global-item"><h4>USA</h4><ul><li>Modern POS workflows</li><li>Customer management</li><li>Staff operations</li><li>Multi-location</li></ul></div>
+      <div class="global-item"><h4>UK & Europe</h4><ul><li>Multi-location ops</li><li>Customer management</li><li>Digital payments</li><li>Business analytics</li></ul></div>
+      <div class="global-item"><h4>Africa</h4><ul><li>Mobile-first workflows</li><li>Digital communication</li><li>Salon operations</li><li>Scalability</li></ul></div>
+    </div>
+    <p style="margin-top:24px;font-size:13.5px;">Designed to support local business workflows. Regional tax and legal compliance vary by market.</p>
+  </div>
+</section>
+
+<section id="before-after">
+  <div class="wrap">
+    <div class="eyebrow">The shift</div>
+    <h2>Stop managing your salon in pieces.</h2>
+    <div class="ba-grid">
+      <div class="ba-col">
+        <h4>BEFORE SALON OS</h4>
+        <ul><li>WhatsApp</li><li>Spreadsheets</li><li>Paper registers</li><li>Manual billing</li><li>Manual reports</li><li>Guesswork</li></ul>
+      </div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-col after">
+        <h4>WITH SALON OS</h4>
+        <ul><li>Bookings + Queue + CRM</li><li>POS + Payments</li><li>Inventory + Marketing</li><li>Daily MIS + WhatsApp reports</li><li>AI recommendations</li><li>Profit analytics</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="eyebrow">Pricing</div>
+    <h2>Simple plans. Built to grow with your salon.</h2>
+    <div class="price-grid">
+      <div class="price-card">
+        <div>
+          <h4>Starter</h4><div class="sub">For independent salons & artists</div>
+          <ul><li>1 branch</li><li>1 staff account</li><li>Basic billing</li><li>Community support</li></ul>
+        </div>
+        <a href="javascript:void(0)" onclick="showToast('Starter Plan Selected - Free Trial Started!')" class="btn btn-ghost price-cta">Start Free</a>
+      </div>
+      <div class="price-card feat">
+        <div>
+          <h4>Growth</h4><div class="sub">For growing salons</div>
+          <ul><li>1 branch</li><li>Up to 10 staff</li><li>Live queue + CRM</li><li>WhatsApp automation</li></ul>
+        </div>
+        <a href="javascript:void(0)" onclick="showToast('Growth Plan Selected - Free Trial Started!')" class="btn btn-gold price-cta">Start Free</a>
+      </div>
+      <div class="price-card">
+        <div>
+          <h4>Business</h4><div class="sub">For multi-branch salons</div>
+          <ul><li>Up to 5 branches</li><li>Unlimited staff</li><li>Inventory + marketing</li><li>Full analytics</li></ul>
+        </div>
+        <a href="javascript:void(0)" onclick="showToast('Connecting with Sales Team...')" class="btn btn-ghost price-cta">Talk to Sales</a>
+      </div>
+      <div class="price-card">
+        <div>
+          <h4>Enterprise</h4><div class="sub">For chains & franchises</div>
+          <ul><li>Unlimited branches</li><li>AI insights</li><li>Custom permissions</li><li>Dedicated support</li></ul>
+        </div>
+        <a href="javascript:void(0)" onclick="showToast('Enterprise Desk Contacted')" class="btn btn-ghost price-cta">Talk to Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="wrap">
+    <div class="eyebrow">Social proof</div>
+    <h2>Trusted by salons, parlours and artists.</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">Salon OS gives us visibility across the entire salon floor — bookings, queue and billing finally sit in one place instead of three different apps.</div>
+        <div class="testi-attr">
+          <div class="testi-avatar">SO</div>
+          <div><div class="testi-name">Salon Owner</div><div class="testi-role">Hair Salon · India</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">The daily WhatsApp report means I don't have to open a dashboard every night to know how the day went.</div>
+        <div class="testi-attr">
+          <div class="testi-avatar">BP</div>
+          <div><div class="testi-name">Beauty Parlour Owner</div><div class="testi-role">Beauty Parlour · UAE</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">Customer history and preferences are saved automatically, so every client feels remembered even on a busy bridal season weekend.</div>
+        <div class="testi-attr">
+          <div class="testi-avatar">MA</div>
+          <div><div class="testi-name">Makeup Artist</div><div class="testi-role">Freelance Studio · UK</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-note">Illustrative reviews shown for demo purposes. Real customer stories from India, USA, UK, Africa and Europe will appear here.</div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="eyebrow">FAQ</div>
+    <h2>Common questions.</h2>
+    <div style="margin-top:32px;">
+      <div class="faq-item open">
+        <button class="faq-q">What is Salon OS?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Salon OS is an all-in-one operating system for managing bookings, customers, staff, billing, payments, inventory, marketing and business analytics — used by salons, beauty parlours and makeup artists alike.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Salon OS only for large salons?<span class="plus">+</span></button>
+        <div class="faq-a"><p>No. It's designed for independent salons, growing businesses and multi-branch salon groups alike.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I manage multiple branches?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, with a central dashboard across every location.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can Salon OS manage walk-ins?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. The system provides smart queue and token management for walk-ins alongside bookings.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I send WhatsApp notifications?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, where the WhatsApp Business integration is configured.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Salon OS available globally?<span class="plus">+</span></button>
+        <div class="faq-a"><p>The platform is designed as a global SaaS product, with support for different salon operating models and regional workflows.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Your salon is already generating data.<br>Let AI turn it into decisions.</h2>
+    <p>Bookings. Customers. Staff. Revenue. Expenses. Inventory. Marketing. Salon OS brings it together, understands what's happening, and helps you decide what to do next.</p>
+    <div class="hero-ctas">
+      <a href="#pricing" class="btn btn-gold">Start Free</a>
+      <a href="javascript:void(0)" onclick="showToast('Demo Booking Request Received!')" class="btn btn-ghost">Book a Demo</a>
+    </div>
+    <div class="hero-micro">Set up your salon in minutes.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="logo" style="margin-bottom:10px;"><span class="logo-mark"></span>Salon OS</div>
+        <p style="font-size:13.5px;">The Operating System for Your Salon.</p>
+      </div>
+      <div class="foot-col"><h5>Product</h5><ul><li><a href="#modules">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="javascript:void(0)" onclick="showToast('Integrations module coming soon')">Integrations</a></li><li><a href="#ai">AI Assistant</a></li></ul></div>
+      <div class="foot-col"><h5>Solutions</h5><ul><li><a href="#who-its-for">Salons</a></li><li><a href="#who-its-for">Beauty Parlours</a></li><li><a href="#who-its-for">Makeup Artists</a></li><li><a href="#who-its-for">Multi-Branch</a></li><li><a href="#who-its-for">Spas</a></li></ul></div>
+      <div class="foot-col"><h5>Resources</h5><ul><li><a href="#faq">FAQs</a></li><li><a href="javascript:void(0)" onclick="showToast('Opening Help Center...')">Help Center</a></li><li><a href="javascript:void(0)" onclick="showToast('Loading Blog...')">Blog</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="javascript:void(0)" onclick="showToast('Salon OS - Founded 2026')">About</a></li><li><a href="javascript:void(0)" onclick="showToast('Contact us at support@salonos.ai')">Contact</a></li><li><a href="javascript:void(0)" onclick="showToast('We are hiring!')">Careers</a></li></ul></div>
+      <div class="foot-col"><h5>Legal</h5><ul><li><a href="javascript:void(0)" onclick="showToast('Privacy Policy')">Privacy</a></li><li><a href="javascript:void(0)" onclick="showToast('Terms of Service')">Terms</a></li><li><a href="javascript:void(0)" onclick="showToast('Security & Compliance')">Security</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Salon OS. All rights reserved.</span>
+      <span>India · USA · UK · Europe · Africa · Worldwide</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast">
+  <span class="logo-mark" style="width:16px;height:16px;"></span>
+  <span id="toast-text">Action triggered successfully</span>
+</div>
+
+<script>
+  // Mobile menu toggle
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // Toast notifications
+  let toastTimeout;
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    toastText.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+
+  // Role switcher
+  document.querySelectorAll('.role-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.role-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.role-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector('.role-panel[data-panel="'+tab.dataset.role+'"]').classList.add('active');
+    });
+  });
+
+  // AI assistant question switcher
+  const aiAnswers = {
+    revenue: {
+      q: "Why is revenue down?",
+      a: "Revenue is down 11% compared with last month. The main drivers are an 18% drop in walk-ins, a 22% decline in Hair Colour bookings and 17 inactive VIP customers.",
+      actions: [
+        { label: "Launch comeback campaign", msg: "Comeback Campaign initialized" },
+        { label: "View Hair Colour performance", msg: "Hair Colour Breakdown loaded" }
+      ]
+    },
+    staff: {
+      q: "Which staff performed best?",
+      a: "Divya generated the highest revenue this month at ₹1.4L across 96 services, with the highest average bill on the team.",
+      actions: [
+        { label: "View staff performance", msg: "Staff Performance Metrics loaded" }
+      ]
+    },
+    churn: {
+      q: "Which customers are at risk?",
+      a: "17 VIP customers haven't visited in 60+ days, and 96 customers overall show declining visit frequency.",
+      actions: [
+        { label: "View customers", msg: "At-Risk Customer List filtered" },
+        { label: "Launch comeback campaign", msg: "VIP Re-engagement dispatches ready" }
+      ]
+    },
+    stock: {
+      q: "What should I purchase this week?",
+      a: "Argan Hair Serum, Keratin Mask and Developer 20 Vol are approaching reorder levels based on this week's consumption.",
+      actions: [
+        { label: "Create purchase list", msg: "Purchase Order draft created" }
+      ]
+    }
+  };
+
+  document.querySelectorAll('.ai-q-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.ai-q-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      const d = aiAnswers[chip.dataset.q];
+      document.getElementById('ai-q-text').textContent = d.q;
+      const actionsHtml = d.actions.map(a => `<button class="ai-chip" onclick="showToast('${a.msg}')">${a.label}</button>`).join('');
+      document.getElementById('ai-a-text').innerHTML = d.a + '<div class="ai-actions" id="ai-a-actions">'+actionsHtml+'</div>';
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const a = item.querySelector('.faq-a');
+    if(item.classList.contains('open')){ a.style.maxHeight = a.scrollHeight+'px'; }
+    item.querySelector('.faq-q').addEventListener('click',()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight=null;});
+      if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight+'px'; }
+    });
+  });
+
+  // Sticky header compact on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>10){ header.querySelector('.navbar').style.padding='12px 28px'; }
+    else{ header.querySelector('.navbar').style.padding='20px 28px'; }
+  });
+</script>
+
+</body>
+</html>

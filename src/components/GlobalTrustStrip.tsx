@@ -16,17 +16,17 @@ export const GlobalTrustStrip: React.FC<GlobalTrustStripProps> = ({ activeRegion
   ];
 
   return (
-    <section className="relative py-8 bg-[#090D16] border-y border-slate-800/80">
+    <section className="relative py-8 bg-[#090D16] theme-light:bg-slate-900 border-y border-slate-800 dark-container">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           
           {/* Header Tagline */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-950 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="w-10 h-10 rounded-xl bg-indigo-950 border border-indigo-500/40 flex items-center justify-center text-indigo-400">
               <Globe2 className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">Global SaaS Readiness</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-indigo-300">Global SaaS Readiness</div>
               <h3 className="text-base font-bold text-white font-heading">Built for salons. Ready for the world.</h3>
             </div>
           </div>
@@ -39,13 +39,13 @@ export const GlobalTrustStrip: React.FC<GlobalTrustStripProps> = ({ activeRegion
                 onClick={() => onRegionChange(reg.code)}
                 className={`flex items-center gap-2 px-3.5 py-2 rounded-xl border text-xs font-semibold transition-all ${
                   activeRegion === reg.code
-                    ? 'bg-indigo-600/20 border-indigo-500 text-white shadow-lg shadow-indigo-500/10'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                    ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-500/20'
+                    : 'bg-slate-950/80 border-slate-800 text-slate-300 hover:text-white hover:border-slate-700'
                 }`}
               >
                 <span className="text-base">{reg.flag}</span>
                 <div className="text-left">
-                  <div className="leading-none">{reg.label}</div>
+                  <div className="leading-none text-white font-bold">{reg.label}</div>
                   <div className="text-[9px] text-slate-400 font-normal mt-0.5">{reg.subtitle}</div>
                 </div>
               </button>

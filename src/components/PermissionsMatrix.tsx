@@ -18,52 +18,52 @@ export const PermissionsMatrix: React.FC<PermissionsMatrixProps> = ({ onOpenDemo
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-[#080C14] border-t border-slate-800 relative">
+    <section className="py-20 md:py-28 bg-[#080C14] theme-light:bg-slate-50 border-t border-slate-800 theme-light:border-slate-200 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 theme-light:bg-indigo-50 border border-indigo-500/30 text-indigo-300 theme-light:text-indigo-700 text-xs font-semibold">
             <span>DYNAMIC ACCESS CONTROL</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white theme-light:text-slate-900 tracking-tight">
             You Decide Who <br />
             <span className="text-gradient-purple">Can Do What.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-base sm:text-lg text-slate-300 theme-light:text-slate-600">
             Configure granular access rights for every employee. Protect sensitive financials while empowering your team.
           </p>
         </div>
 
         {/* Matrix Table */}
-        <div className="mt-14 max-w-4xl mx-auto glass-card rounded-2xl p-6 overflow-x-auto border border-slate-800">
+        <div className="mt-14 max-w-4xl mx-auto glass-card rounded-2xl p-6 overflow-x-auto border border-slate-800 theme-light:border-slate-200">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 uppercase tracking-wider font-semibold">
+              <tr className="border-b border-slate-800 theme-light:border-slate-200 text-slate-400 theme-light:text-slate-600 uppercase tracking-wider font-semibold">
                 <th className="pb-4">Action / Right</th>
-                <th className="pb-4 text-center text-indigo-400">Owner</th>
-                <th className="pb-4 text-center text-purple-400">Manager</th>
-                <th className="pb-4 text-center text-emerald-400">Receptionist</th>
-                <th className="pb-4 text-center text-amber-400">Stylist</th>
+                <th className="pb-4 text-center text-indigo-400 theme-light:text-indigo-700">Owner</th>
+                <th className="pb-4 text-center text-purple-400 theme-light:text-purple-700">Manager</th>
+                <th className="pb-4 text-center text-emerald-400 theme-light:text-emerald-700">Receptionist</th>
+                <th className="pb-4 text-center text-amber-400 theme-light:text-amber-700">Stylist</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80">
+            <tbody className="divide-y divide-slate-800/80 theme-light:divide-slate-200">
               {permissionsData.map((row, idx) => (
-                <tr key={idx} className="hover:bg-slate-900/40 transition-colors">
-                  <td className="py-3.5 font-medium text-slate-200">{row.action}</td>
+                <tr key={idx} className="hover:bg-slate-900/40 theme-light:hover:bg-slate-100/80 transition-colors">
+                  <td className="py-3.5 font-medium text-slate-200 theme-light:text-slate-800">{row.action}</td>
                   <td className="py-3.5 text-center">
-                    {row.owner ? <Check className="w-4 h-4 text-emerald-400 mx-auto" /> : <X className="w-4 h-4 text-slate-600 mx-auto" />}
+                    {row.owner ? <Check className="w-4 h-4 text-emerald-400 theme-light:text-emerald-600 mx-auto" /> : <X className="w-4 h-4 text-slate-600 theme-light:text-slate-400 mx-auto" />}
                   </td>
                   <td className="py-3.5 text-center">
-                    {row.manager ? <Check className="w-4 h-4 text-emerald-400 mx-auto" /> : <X className="w-4 h-4 text-slate-600 mx-auto" />}
+                    {row.manager ? <Check className="w-4 h-4 text-emerald-400 theme-light:text-emerald-600 mx-auto" /> : <X className="w-4 h-4 text-slate-600 theme-light:text-slate-400 mx-auto" />}
                   </td>
                   <td className="py-3.5 text-center">
-                    {row.receptionist ? <Check className="w-4 h-4 text-emerald-400 mx-auto" /> : <X className="w-4 h-4 text-slate-600 mx-auto" />}
+                    {row.receptionist ? <Check className="w-4 h-4 text-emerald-400 theme-light:text-emerald-600 mx-auto" /> : <X className="w-4 h-4 text-slate-600 theme-light:text-slate-400 mx-auto" />}
                   </td>
                   <td className="py-3.5 text-center">
-                    {row.stylist ? <Check className="w-4 h-4 text-emerald-400 mx-auto" /> : <X className="w-4 h-4 text-slate-600 mx-auto" />}
+                    {row.stylist ? <Check className="w-4 h-4 text-emerald-400 theme-light:text-emerald-600 mx-auto" /> : <X className="w-4 h-4 text-slate-600 theme-light:text-slate-400 mx-auto" />}
                   </td>
                 </tr>
               ))}

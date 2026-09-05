@@ -17,7 +17,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Light Theme Overrides */
+/* Light Theme Root & Body Overrides */
 .theme-light,
 .theme-light body,
 body.theme-light {
@@ -25,75 +25,11 @@ body.theme-light {
   color: #0F172A !important;
 }
 
-/* Ensure Headings, Text & Badges are Crisp Dark Slate in Light Mode */
-.theme-light h1,
-.theme-light h2,
-.theme-light h3,
-.theme-light h4,
-.theme-light h5,
-.theme-light h6 {
-  color: #0F172A;
-}
-
-.theme-light p {
-  color: #334155;
-}
-
-/* Direct Text Utility Fallbacks in Light Mode (when theme-light is on parent) */
-.theme-light h1.text-white,
-.theme-light h2.text-white,
-.theme-light h3.text-white,
-.theme-light h4.text-white,
-.theme-light h5.text-white,
-.theme-light h6.text-white {
-  color: #0F172A;
-}
-
-.theme-light p.text-slate-100,
-.theme-light p.text-slate-200,
-.theme-light p.text-slate-300,
-.theme-light p.text-slate-400 {
-  color: #334155;
-}
-
-.theme-light span.text-slate-300,
-.theme-light span.text-slate-400 {
-  color: #475569;
-}
-
-/* Preserve bright white text inside dark buttons, cards, and banners in Light Mode */
-.theme-light .bg-gradient-to-r *,
-.theme-light .bg-gradient-to-tr *,
-.theme-light .bg-indigo-600 *,
-.theme-light .bg-purple-600 *,
-.theme-light .bg-slate-900 *,
-.theme-light .bg-slate-950 * {
-  /* Allow dark container internal styling */
-}
-
-.theme-light \.bg-\[\#0B0F17\] h1,
-.theme-light \.bg-\[\#0B0F17\] h2,
-.theme-light \.bg-\[\#0B0F17\] h3,
-.theme-light \.bg-\[\#0B0F17\] p,
-.theme-light \.bg-\[\#0B0F17\] span,
-.theme-light \.bg-\[\#0F172A\] h1,
-.theme-light \.bg-\[\#0F172A\] h2,
-.theme-light \.bg-\[\#0F172A\] h3,
-.theme-light \.bg-\[\#0F172A\] p,
-.theme-light \.bg-\[\#0F172A\] span,
-.theme-light .bg-slate-900 h1,
-.theme-light .bg-slate-900 h2,
-.theme-light .bg-slate-900 h3,
-.theme-light .bg-slate-900 p,
-.theme-light .bg-slate-900 span {
-  color: inherit;
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* Dark Glass Cards */
+/* Dark Glass Cards (Default) */
 .glass-panel {
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(16px);
@@ -108,19 +44,81 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Light Glass Cards */
+/* Light Glass Cards (Active when .theme-light is on root) */
 .theme-light .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: #FFFFFF !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+  color: #0F172A !important;
 }
 
 .theme-light .glass-card {
-  background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+  background: #FFFFFF !important;
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05) !important;
+  color: #0F172A !important;
+}
+
+/* Light Theme Text Color Conversions INSIDE Light Cards & Light Sections */
+.theme-light .glass-panel .text-white,
+.theme-light .glass-card .text-white,
+.theme-light .light-card .text-white {
+  color: #0F172A !important;
+}
+
+.theme-light .glass-panel .text-slate-100,
+.theme-light .glass-card .text-slate-100,
+.theme-light .light-card .text-slate-100 {
+  color: #0F172A !important;
+}
+
+.theme-light .glass-panel .text-slate-200,
+.theme-light .glass-card .text-slate-200,
+.theme-light .light-card .text-slate-200 {
+  color: #1E293B !important;
+}
+
+.theme-light .glass-panel .text-slate-300,
+.theme-light .glass-card .text-slate-300,
+.theme-light .light-card .text-slate-300 {
+  color: #334155 !important;
+}
+
+.theme-light .glass-panel .text-slate-400,
+.theme-light .glass-card .text-slate-400,
+.theme-light .light-card .text-slate-400 {
+  color: #475569 !important;
+}
+
+/* Dark Showcase Container Exemption: Always keep dark background & bright white text */
+.dark-container,
+.theme-light .dark-container {
+  background-color: #070A11 !important;
+  color: #F8FAFC !important;
+  border-color: #1E293B !important;
+}
+
+.dark-container .text-white,
+.theme-light .dark-container .text-white {
+  color: #FFFFFF !important;
+}
+
+.dark-container .text-slate-200,
+.theme-light .dark-container .text-slate-200 {
+  color: #E2E8F0 !important;
+}
+
+.dark-container .text-slate-300,
+.theme-light .dark-container .text-slate-300 {
+  color: #CBD5E1 !important;
+}
+
+.dark-container .text-slate-400,
+.theme-light .dark-container .text-slate-400 {
+  color: #94A3B8 !important;
 }
 
 /* Text & Accent Gradients */
