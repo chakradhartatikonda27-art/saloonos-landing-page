@@ -67,22 +67,20 @@ body.theme-light {
 .theme-light .bg-indigo-600 *,
 .theme-light .bg-purple-600 *,
 .theme-light .bg-slate-900 *,
-.theme-light .bg-slate-950 *,
-.theme-light .bg-[#0B0F17] *,
-.theme-light .bg-[#0F172A] * {
+.theme-light .bg-slate-950 * {
   /* Allow dark container internal styling */
 }
 
-.theme-light .bg-[#0B0F17] h1,
-.theme-light .bg-[#0B0F17] h2,
-.theme-light .bg-[#0B0F17] h3,
-.theme-light .bg-[#0B0F17] p,
-.theme-light .bg-[#0B0F17] span,
-.theme-light .bg-[#0F172A] h1,
-.theme-light .bg-[#0F172A] h2,
-.theme-light .bg-[#0F172A] h3,
-.theme-light .bg-[#0F172A] p,
-.theme-light .bg-[#0F172A] span,
+.theme-light \.bg-\[\#0B0F17\] h1,
+.theme-light \.bg-\[\#0B0F17\] h2,
+.theme-light \.bg-\[\#0B0F17\] h3,
+.theme-light \.bg-\[\#0B0F17\] p,
+.theme-light \.bg-\[\#0B0F17\] span,
+.theme-light \.bg-\[\#0F172A\] h1,
+.theme-light \.bg-\[\#0F172A\] h2,
+.theme-light \.bg-\[\#0F172A\] h3,
+.theme-light \.bg-\[\#0F172A\] p,
+.theme-light \.bg-\[\#0F172A\] span,
 .theme-light .bg-slate-900 h1,
 .theme-light .bg-slate-900 h2,
 .theme-light .bg-slate-900 h3,
