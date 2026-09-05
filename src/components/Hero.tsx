@@ -17,11 +17,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Top Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/60 theme-light:bg-indigo-50 border border-indigo-500/30 text-indigo-300 theme-light:text-indigo-700 text-xs font-semibold mb-6 shadow-lg shadow-indigo-950/50 theme-light:shadow-slate-200 animate-fadeIn">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/80 theme-light:bg-indigo-50 border border-indigo-500/30 text-indigo-200 theme-light:text-indigo-900 text-xs font-semibold mb-6 shadow-lg shadow-indigo-950/50 theme-light:shadow-slate-200 animate-fadeIn">
           <Sparkles className="w-3.5 h-3.5 text-purple-400 theme-light:text-purple-600" />
-          <span>The Operating System for Salons, Spas, Parlours & Makeup Artists</span>
+          <span className="text-indigo-200 theme-light:text-indigo-900">The Operating System for Salons, Spas, Parlours & Makeup Artists</span>
           <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-          <span className="text-slate-400 theme-light:text-slate-500 font-normal">Global Platform</span>
+          <span className="text-slate-300 theme-light:text-slate-700 font-medium">Global Platform</span>
         </div>
 
         {/* Primary Headline with Perfect Light/Dark Contrast */}
@@ -35,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo }) => {
           {BUSINESS_TYPES.map((b) => (
             <span 
               key={b.id}
-              className="px-3 py-1.5 rounded-full bg-slate-900/80 theme-light:bg-white border border-slate-800 theme-light:border-slate-300 text-slate-300 theme-light:text-slate-700 text-xs font-semibold shadow-sm hover:border-indigo-500/50 transition-all"
+              className="px-3 py-1.5 rounded-full bg-slate-900/90 theme-light:bg-white border border-slate-700 theme-light:border-slate-300 text-slate-200 theme-light:text-slate-800 text-xs font-semibold shadow-sm hover:border-indigo-500/50 transition-all"
             >
               ✨ {b.title}
             </span>
@@ -43,8 +43,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo }) => {
         </div>
 
         {/* Supporting Microcopy with High Contrast */}
-        <p className="mt-6 text-lg sm:text-xl text-slate-300 theme-light:text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed">
-          Salon OS connects <span className="text-white theme-light:text-slate-900 font-bold">bookings, live queues, staff, services, billing, payments, customer CRM, inventory, marketing</span> and <span className="text-white theme-light:text-slate-900 font-bold">AI business intelligence</span> into one powerful platform.
+        <p className="mt-6 text-lg sm:text-xl text-slate-300 theme-light:text-slate-700 max-w-3xl mx-auto font-normal leading-relaxed">
+          Salon OS connects <span className="text-white theme-light:text-slate-950 font-extrabold">bookings, live queues, staff, services, billing, payments, customer CRM, inventory, marketing</span> and <span className="text-white theme-light:text-slate-950 font-extrabold">AI business intelligence</span> into one powerful platform.
         </p>
 
         {/* Primary Call-to-Actions */}

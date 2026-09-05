@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant theme-light (&:where(.theme-light, .theme-light *));
+
 :root {
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
@@ -16,10 +18,77 @@ body {
 }
 
 /* Light Theme Overrides */
+.theme-light,
 .theme-light body,
 body.theme-light {
-  background-color: #F8FAFC;
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+/* Ensure Headings, Text & Badges are Crisp Dark Slate in Light Mode */
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light h4,
+.theme-light h5,
+.theme-light h6 {
   color: #0F172A;
+}
+
+.theme-light p {
+  color: #334155;
+}
+
+/* Direct Text Utility Fallbacks in Light Mode (when theme-light is on parent) */
+.theme-light h1.text-white,
+.theme-light h2.text-white,
+.theme-light h3.text-white,
+.theme-light h4.text-white,
+.theme-light h5.text-white,
+.theme-light h6.text-white {
+  color: #0F172A;
+}
+
+.theme-light p.text-slate-100,
+.theme-light p.text-slate-200,
+.theme-light p.text-slate-300,
+.theme-light p.text-slate-400 {
+  color: #334155;
+}
+
+.theme-light span.text-slate-300,
+.theme-light span.text-slate-400 {
+  color: #475569;
+}
+
+/* Preserve bright white text inside dark buttons, cards, and banners in Light Mode */
+.theme-light .bg-gradient-to-r *,
+.theme-light .bg-gradient-to-tr *,
+.theme-light .bg-indigo-600 *,
+.theme-light .bg-purple-600 *,
+.theme-light .bg-slate-900 *,
+.theme-light .bg-slate-950 *,
+.theme-light .bg-[#0B0F17] *,
+.theme-light .bg-[#0F172A] * {
+  /* Allow dark container internal styling */
+}
+
+.theme-light .bg-[#0B0F17] h1,
+.theme-light .bg-[#0B0F17] h2,
+.theme-light .bg-[#0B0F17] h3,
+.theme-light .bg-[#0B0F17] p,
+.theme-light .bg-[#0B0F17] span,
+.theme-light .bg-[#0F172A] h1,
+.theme-light .bg-[#0F172A] h2,
+.theme-light .bg-[#0F172A] h3,
+.theme-light .bg-[#0F172A] p,
+.theme-light .bg-[#0F172A] span,
+.theme-light .bg-slate-900 h1,
+.theme-light .bg-slate-900 h2,
+.theme-light .bg-slate-900 h3,
+.theme-light .bg-slate-900 p,
+.theme-light .bg-slate-900 span {
+  color: inherit;
 }
 
 h1, h2, h3, h4, h5, h6 {
