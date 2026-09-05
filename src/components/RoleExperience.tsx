@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ROLES_DATA } from '../data/marketingData';
 import { RoleType } from '../types';
 import { 
-  User, LayoutGrid, Sliders, Scissors, Building2, CheckCircle2, ArrowRight, Sparkles
+  User, LayoutGrid, Sliders, Scissors, Building2, CheckCircle2, ArrowRight
 } from 'lucide-react';
 
 interface RoleExperienceProps {
@@ -26,21 +26,21 @@ export const RoleExperience: React.FC<RoleExperienceProps> = ({ onOpenDemo }) =>
   const IconComponent = getRoleIcon(currentRole.id);
 
   return (
-    <section id="roles" className="py-20 md:py-28 bg-[#090D16] border-y border-slate-800 relative">
+    <section id="roles" className="py-20 md:py-28 bg-[#090D16] theme-light:bg-slate-100/60 border-y border-slate-800 theme-light:border-slate-200 relative transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 theme-light:bg-indigo-50 border border-indigo-500/30 text-indigo-400 theme-light:text-indigo-700 text-xs font-semibold">
             <span>TAILORED OPERATIONAL VIEWS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
-            One Salon. <br />
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white theme-light:text-slate-900 tracking-tight">
+            One Business. <br />
             <span className="text-gradient-purple">Five Powerful Experiences.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-base sm:text-lg text-slate-300 theme-light:text-slate-600">
             Salon OS provides customized, role-tailored interfaces so every team member stays focused, productive, and satisfied.
           </p>
         </div>
@@ -54,13 +54,13 @@ export const RoleExperience: React.FC<RoleExperienceProps> = ({ onOpenDemo }) =>
               <button
                 key={role.id}
                 onClick={() => setActiveRole(role.id)}
-                className={`flex items-center gap-2.5 px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 ${
+                className={`flex items-center gap-2.5 px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer ${
                   isActive
                     ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xl shadow-indigo-600/30 scale-105 border border-indigo-400'
-                    : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                    : 'bg-slate-900 theme-light:bg-white border border-slate-800 theme-light:border-slate-300 text-slate-400 theme-light:text-slate-700 hover:text-indigo-600 hover:border-slate-400'
                 }`}
               >
-                <TabIcon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                <TabIcon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400 theme-light:text-slate-500'}`} />
                 <span>{role.title.replace(' Experience', '')}</span>
               </button>
             );
@@ -73,39 +73,39 @@ export const RoleExperience: React.FC<RoleExperienceProps> = ({ onOpenDemo }) =>
             
             {/* Left Content (5 cols) */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 theme-light:text-indigo-700 text-xs font-bold uppercase tracking-wider">
                 {currentRole.badge}
               </div>
 
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white font-heading">{currentRole.title}</h3>
-                <p className="text-sm font-medium text-indigo-300 mt-1">{currentRole.subtitle}</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white theme-light:text-slate-900 font-heading">{currentRole.title}</h3>
+                <p className="text-sm font-semibold text-indigo-500 theme-light:text-indigo-600 mt-1">{currentRole.subtitle}</p>
               </div>
 
               {/* Quote Block */}
-              <div className="p-4 rounded-xl bg-slate-900/80 border-l-4 border-indigo-500 italic text-xs text-slate-300">
+              <div className="p-4 rounded-xl bg-slate-900/80 theme-light:bg-slate-50 border-l-4 border-indigo-500 italic text-xs text-slate-300 theme-light:text-slate-700">
                 "{currentRole.quote}"
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-slate-300 theme-light:text-slate-700 leading-relaxed font-normal">
                 {currentRole.description}
               </p>
 
               {/* Capabilities Checklist */}
               <div className="space-y-2.5 pt-2">
                 {currentRole.capabilities.map((cap, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-200">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-200 theme-light:text-slate-800">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                     <span>{cap}</span>
                   </div>
                 ))}
               </div>
 
               {/* Role CTA & Metric */}
-              <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-800">
+              <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-800 theme-light:border-slate-200">
                 <div>
-                  <div className="text-[10px] text-slate-400 uppercase font-semibold">{currentRole.metricLabel}</div>
-                  <div className="text-lg font-bold text-emerald-400 font-heading">{currentRole.metricValue}</div>
+                  <div className="text-[10px] text-slate-400 theme-light:text-slate-500 uppercase font-semibold">{currentRole.metricLabel}</div>
+                  <div className="text-lg font-bold text-emerald-500 font-heading">{currentRole.metricValue}</div>
                 </div>
 
                 <button
@@ -120,32 +120,32 @@ export const RoleExperience: React.FC<RoleExperienceProps> = ({ onOpenDemo }) =>
 
             {/* Right Interactive Mock Console (6 cols) */}
             <div className="lg:col-span-6">
-              <div className="glass-panel rounded-xl border border-slate-700/80 overflow-hidden shadow-2xl bg-[#0B0F19]">
+              <div className="glass-panel rounded-xl border border-slate-700/80 theme-light:border-slate-300 overflow-hidden shadow-2xl bg-[#0B0F19] theme-light:bg-white">
                 
                 {/* Mock Header */}
-                <div className="p-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                <div className="p-4 bg-slate-900 theme-light:bg-slate-100 border-b border-slate-800 theme-light:border-slate-200 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-indigo-600/20 text-indigo-400 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-600/20 text-indigo-500 flex items-center justify-center">
                       <IconComponent className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-white">{currentRole.mockUi.title}</div>
-                      <div className="text-[10px] text-slate-400 font-mono">{currentRole.mockUi.status}</div>
+                      <div className="text-xs font-bold text-white theme-light:text-slate-900">{currentRole.mockUi.title}</div>
+                      <div className="text-[10px] text-slate-400 theme-light:text-slate-600 font-mono">{currentRole.mockUi.status}</div>
                     </div>
                   </div>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
                 </div>
 
                 {/* Mock Body Items */}
                 <div className="p-5 space-y-3">
                   {currentRole.mockUi.items.map((item, i) => (
-                    <div key={i} className="p-3 rounded-lg bg-slate-900/90 border border-slate-800/80 flex items-center justify-between text-xs">
-                      <span className="text-slate-400 font-medium">{item.label}</span>
+                    <div key={i} className="p-3 rounded-lg bg-slate-900/90 theme-light:bg-slate-50 border border-slate-800/80 theme-light:border-slate-200 flex items-center justify-between text-xs">
+                      <span className="text-slate-400 theme-light:text-slate-600 font-medium">{item.label}</span>
                       <span className={`font-bold font-mono ${
-                        item.color === 'emerald' ? 'text-emerald-400' :
-                        item.color === 'indigo' ? 'text-indigo-300' :
-                        item.color === 'purple' ? 'text-purple-300' :
-                        item.color === 'amber' ? 'text-amber-300' : 'text-white'
+                        item.color === 'emerald' ? 'text-emerald-500' :
+                        item.color === 'indigo' ? 'text-indigo-500' :
+                        item.color === 'purple' ? 'text-purple-500' :
+                        item.color === 'amber' ? 'text-amber-500' : 'text-white theme-light:text-slate-900'
                       }`}>
                         {item.value}
                       </span>
@@ -154,9 +154,9 @@ export const RoleExperience: React.FC<RoleExperienceProps> = ({ onOpenDemo }) =>
                 </div>
 
                 {/* Mock Action Buttons */}
-                <div className="p-4 bg-slate-900/60 border-t border-slate-800 flex items-center gap-2">
+                <div className="p-4 bg-slate-900/60 theme-light:bg-slate-100 border-t border-slate-800 theme-light:border-slate-200 flex items-center gap-2">
                   {currentRole.mockUi.actions.map((act, i) => (
-                    <button key={i} className="flex-1 py-2 text-[11px] font-bold text-slate-200 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 transition-colors">
+                    <button key={i} className="flex-1 py-2 text-[11px] font-bold text-slate-200 theme-light:text-slate-800 bg-slate-800 theme-light:bg-white hover:bg-slate-700 rounded-lg border border-slate-700 theme-light:border-slate-300 transition-colors shadow-xs">
                       {act}
                     </button>
                   ))}

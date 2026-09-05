@@ -34,16 +34,16 @@ export const OnePlatformGrid: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 theme-light:bg-purple-50 border border-purple-500/30 text-purple-400 theme-light:text-purple-700 text-xs font-semibold">
             <span>COMPLETE PRODUCT ECOSYSTEM</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
-            Everything Your Salon Needs. <br />
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white theme-light:text-slate-900 tracking-tight">
+            Everything Your Business Needs. <br />
             <span className="text-gradient-purple">One Platform.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-base sm:text-lg text-slate-300 theme-light:text-slate-600">
             Replace 8 different subscriptions with one unified operating system. Click any module to explore detailed capabilities.
           </p>
         </div>
@@ -60,26 +60,26 @@ export const OnePlatformGrid: React.FC = () => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-500 flex items-center justify-center border border-indigo-500/30 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
                       <IconComponent className="w-6 h-6" />
                     </div>
                     {mod.sampleMetric && (
-                      <span className="px-2 py-1 text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-md">
+                      <span className="px-2 py-1 text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded-md">
                         {mod.sampleMetric.value}
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-lg font-bold text-white font-heading group-hover:text-indigo-300 transition-colors">
+                  <h3 className="text-lg font-bold text-white theme-light:text-slate-900 font-heading group-hover:text-indigo-600 transition-colors">
                     {mod.title}
                   </h3>
                   
-                  <p className="mt-2 text-xs text-slate-400 leading-relaxed">
+                  <p className="mt-2 text-xs text-slate-400 theme-light:text-slate-600 leading-relaxed">
                     {mod.shortDesc}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-indigo-400 group-hover:text-indigo-300">
+                <div className="mt-5 pt-3 border-t border-slate-800/80 theme-light:border-slate-200 flex items-center justify-between text-xs font-semibold text-indigo-500 theme-light:text-indigo-600 group-hover:text-indigo-600">
                   <span>Explore Module</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -97,7 +97,7 @@ export const OnePlatformGrid: React.FC = () => {
             
             <button
               onClick={() => setSelectedModule(null)}
-              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-lg bg-slate-900 border border-slate-800"
+              className="absolute top-4 right-4 p-2 text-slate-400 theme-light:text-slate-600 hover:text-white rounded-lg bg-slate-900 theme-light:bg-slate-100 border border-slate-800 theme-light:border-slate-300"
             >
               <X className="w-5 h-5" />
             </button>
@@ -107,21 +107,21 @@ export const OnePlatformGrid: React.FC = () => {
                 {React.createElement(getModuleIcon(selectedModule.icon), { className: 'w-7 h-7' })}
               </div>
               <div>
-                <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider">SALON OS MODULE</span>
-                <h3 className="text-2xl font-bold text-white font-heading">{selectedModule.title}</h3>
+                <span className="text-xs font-bold text-indigo-500 uppercase tracking-wider">SALON OS MODULE</span>
+                <h3 className="text-2xl font-bold text-white theme-light:text-slate-900 font-heading">{selectedModule.title}</h3>
               </div>
             </div>
 
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-slate-300 theme-light:text-slate-700 leading-relaxed">
               {selectedModule.fullDesc}
             </p>
 
-            <div className="space-y-3 pt-2 border-t border-slate-800">
-              <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Key Capabilities</h4>
+            <div className="space-y-3 pt-2 border-t border-slate-800 theme-light:border-slate-200">
+              <h4 className="text-xs font-semibold text-slate-400 theme-light:text-slate-600 uppercase tracking-wider">Key Capabilities</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {selectedModule.highlights.map((h, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs text-slate-200 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
-                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <div key={i} className="flex items-center gap-2 text-xs text-slate-200 theme-light:text-slate-800 bg-slate-900/60 theme-light:bg-slate-100 p-2.5 rounded-lg border border-slate-800 theme-light:border-slate-200">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>{h}</span>
                   </div>
                 ))}
@@ -129,9 +129,9 @@ export const OnePlatformGrid: React.FC = () => {
             </div>
 
             <div className="pt-4 flex items-center justify-between">
-              <div className="text-xs text-slate-400">
+              <div className="text-xs text-slate-400 theme-light:text-slate-600">
                 {selectedModule.sampleMetric && (
-                  <span>Impact: <strong className="text-emerald-400">{selectedModule.sampleMetric.label} {selectedModule.sampleMetric.value}</strong></span>
+                  <span>Impact: <strong className="text-emerald-500 font-bold">{selectedModule.sampleMetric.label} {selectedModule.sampleMetric.value}</strong></span>
                 )}
               </div>
               <button
