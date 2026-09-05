@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { GlobalTrustStrip } from './components/GlobalTrustStrip';
@@ -30,18 +30,37 @@ import { Footer } from './components/Footer';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 export function App() {
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [activeRegion, setActiveRegion] = useState('india');
   const [viewingRegionalPage, setViewingRegionalPage] = useState<string | null>(null);
   const [leadModalOpen, setLeadModalOpen] = useState(false);
   const [leadModalType, setLeadModalType] = useState<string>('Start Free');
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('theme-light');
+      document.body.classList.add('theme-light');
+    } else {
+      document.documentElement.classList.remove('theme-light');
+      document.body.classList.remove('theme-light');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const handleOpenDemo = (type?: string) => {
     if (type) setLeadModalType(type);
     setLeadModalOpen(true);
   };
 
+  const isLight = theme === 'light';
+
   return (
-    <div className="min-h-screen bg-[#070A11] text-slate-100 font-sans selection:bg-indigo-500 selection:text-white">
+    <div className={`min-h-screen transition-colors duration-300 font-sans selection:bg-indigo-500 selection:text-white ${
+      isLight ? 'bg-slate-50 text-slate-900 theme-light' : 'bg-[#070A11] text-slate-100'
+    }`}>
       
       {/* Sticky Header */}
       <Navbar
@@ -51,6 +70,8 @@ export function App() {
           setActiveRegion(reg);
           setViewingRegionalPage(null);
         }}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* Main Content View Switcher */}
@@ -146,21 +167,25 @@ export function App() {
           <FaqAccordion />
 
           {/* 25. Final High-Impact Call to Action Banner */}
-          <section className="py-24 relative overflow-hidden bg-gradient-to-b from-[#080C14] via-indigo-950/40 to-[#070A11]">
+          <section className={`py-24 relative overflow-hidden transition-colors ${
+            isLight 
+              ? 'bg-gradient-to-b from-slate-100 via-indigo-50/60 to-white' 
+              : 'bg-gradient-to-b from-[#080C14] via-indigo-950/40 to-[#070A11]'
+          }`}>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 text-xs font-semibold shadow-lg">
-                <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                <span>TRANSFORM YOUR SALON TODAY</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-600 dark:text-indigo-300 text-xs font-semibold shadow-lg">
+                <Sparkles className="w-3.5 h-3.5 text-purple-500" />
+                <span>TRANSFORM YOUR SALON & SPA TODAY</span>
               </div>
 
-              <h2 className="text-4xl sm:text-6xl font-heading font-extrabold text-white tracking-tight">
-                Your Salon Is Growing. <br />
+              <h2 className={`text-4xl sm:text-6xl font-heading font-extrabold tracking-tight ${isLight ? 'text-slate-900' : 'text-white'}`}>
+                Your Business Is Growing. <br />
                 <span className="text-gradient-purple">Your Software Should Too.</span>
               </h2>
 
-              <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
+              <p className={`text-base sm:text-lg max-w-2xl mx-auto ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>
                 Bring bookings, customers, staff, billing, queue, operations, and growth into one powerful platform. Set up your salon in minutes.
               </p>
 
@@ -175,14 +200,18 @@ export function App() {
 
                 <button
                   onClick={() => handleOpenDemo('Final CTA - Book Demo')}
-                  className="w-full sm:w-auto px-9 py-4 text-base font-semibold text-slate-200 hover:text-white bg-slate-900 border border-slate-700 rounded-xl shadow-lg transition-all"
+                  className={`w-full sm:w-auto px-9 py-4 text-base font-semibold border rounded-xl shadow-lg transition-all ${
+                    isLight 
+                      ? 'bg-white hover:bg-slate-100 text-slate-800 border-slate-300' 
+                      : 'bg-slate-900 border-slate-700 text-slate-200 hover:text-white'
+                  }`}
                 >
                   Book a Live Demo
                 </button>
               </div>
 
-              <div className="text-xs text-slate-400 font-mono">
-                SALON OS • The Operating System for Your Salon
+              <div className={`text-xs font-mono ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
+                SALON OS • The Operating System for Salons, Spas, Parlours & Makeup Artists
               </div>
             </div>
           </section>
